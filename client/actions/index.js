@@ -13,3 +13,17 @@ export const toggleStatus = (task) => {
     id: task.id
   }
 }
+
+export const updateStatus = (task) => {
+  return (dispatch) => {
+
+    request
+      .put('/api/tasks')
+      .send(task)
+      .end((err, res) => {
+        console.log({res: res.body});
+        if (!err) dispatch({type: 'TOGGLE_STATUS', id: task.id})
+      })
+
+  }
+}

@@ -4,11 +4,15 @@ import {connect} from 'react-redux'
 import Task from './Task'
 
 
-const Board = (props) => (
-  <div className='Board'>
-    {renderTasks(props.tasks)}
-  </div>
-)
+const Board = () => {
+  return (
+    <div className='board'>
+      <p>Hello from Board</p>
+      // {renderTasks(props.tasks)}
+    </div>
+  )
+}
+
 
 function renderTasks (taskArray) {
   return taskArray.map((task) => {

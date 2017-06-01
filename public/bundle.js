@@ -10673,6 +10673,10 @@ var _TasksContainer = __webpack_require__(100);
 
 var _TasksContainer2 = _interopRequireDefault(_TasksContainer);
 
+var _Board = __webpack_require__(237);
+
+var _Board2 = _interopRequireDefault(_Board);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var App = function App() {
@@ -10757,7 +10761,7 @@ exports['default'] = thunk;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.toggleStatus = exports.receivePosts = undefined;
+exports.updateStatus = exports.toggleStatus = exports.receivePosts = undefined;
 
 var _superagent = __webpack_require__(230);
 
@@ -10778,6 +10782,16 @@ var toggleStatus = exports.toggleStatus = function toggleStatus(task) {
   return {
     type: 'TOGGLE_STATUS',
     id: task.id
+  };
+};
+
+var updateStatus = exports.updateStatus = function updateStatus(task) {
+  return function (dispatch) {
+
+    _superagent2.default.put('/api/tasks').send(task).end(function (err, res) {
+      console.log({ res: res.body });
+      if (!err) dispatch({ type: 'TOGGLE_STATUS', id: task.id });
+    });
   };
 };
 
@@ -10825,7 +10839,7 @@ var Tasks = function Tasks(props) {
         _react2.default.createElement(
           'button',
           { onClick: function onClick() {
-              return props.dispatch((0, _actions.toggleStatus)(task));
+              return props.dispatch((0, _actions.updateStatus)(task));
             } },
           ' < '
         ),
@@ -10919,7 +10933,7 @@ function tasks() {
   switch (action.type) {
     case 'TOGGLE_STATUS':
       return state.map(function (task) {
-        return action.id == task.id ? _extends({}, task, { completionStatus: !task.completionStatus }) : task;
+        return action.id == task.id ? _extends({}, task, { completionStatus: task.completionStatus + 1 }) : task;
       });
 
     default:
@@ -26079,6 +26093,88 @@ module.exports = function(module) {
 	return module;
 };
 
+
+/***/ }),
+/* 237 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(20);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRedux = __webpack_require__(54);
+
+var _Task = __webpack_require__(238);
+
+var _Task2 = _interopRequireDefault(_Task);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Board = function Board() {
+  return _react2.default.createElement(
+    'div',
+    { className: 'board' },
+    _react2.default.createElement(
+      'p',
+      null,
+      'Hello from Board'
+    ),
+    '// ',
+    renderTasks(props.tasks)
+  );
+};
+
+function renderTasks(taskArray) {
+  return taskArray.map(function (task) {
+    return _react2.default.createElement(_Task2.default, { key: task.id, task: task });
+  });
+}
+
+function mapState2Props(state) {
+  return {
+    tasks: state.tasks
+  };
+}
+
+exports.default = (0, _reactRedux.connect)(mapState2Props)(_Task2.default);
+
+/***/ }),
+/* 238 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(20);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Task = function Task(props) {
+  return _react2.default.createElement(
+    'div',
+    null,
+    _react2.default.createElement(
+      'div',
+      null,
+      props.task.id
+    )
+  );
+};
+
+exports.default = Task;
 
 /***/ })
 /******/ ]);

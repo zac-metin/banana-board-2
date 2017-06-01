@@ -7,7 +7,7 @@ function tasks(state = initialState, action) {
    switch (action.type) {
     case 'TOGGLE_STATUS':
     return (
-       state.map((task) => {return action.id == task.id ? {...task, completionStatus: !task.completionStatus} : task})
+       state.map((task) => {return action.id == task.id ? {...task, completionStatus: task.completionStatus+1} : task})
     )
 
 
