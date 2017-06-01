@@ -2,7 +2,7 @@
 
 Wireframe:
 
-![banana](http://imgur.com/a/CZZWb)
+![banana](http://i.imgur.com/xUVZjws.jpg)
 
 Learning Objectives:
 
