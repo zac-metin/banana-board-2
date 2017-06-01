@@ -3,7 +3,6 @@ import tasksArray from '../../data/tasks'
 const initialState = tasksArray.tasks
 
 function tasks(state = initialState, action) {
-  console.log(state);
    switch (action.type) {
     case 'TOGGLE_STATUS':
     return (
