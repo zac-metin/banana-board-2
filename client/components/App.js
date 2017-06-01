@@ -1,6 +1,10 @@
 import React from 'react'
+
 import {connect} from 'react-redux'
 import {getTasks} from '../actions/index'
+
+import Board from './Board'
+
 import TasksContainer from '../containers/TasksContainer'
 
 class App extends React.Component {
