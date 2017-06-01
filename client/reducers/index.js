@@ -1,8 +1,7 @@
 import {combineReducers} from 'redux'
 
-import subreddits from './subreddits'
+import tasks from './tasks'
 
 export default combineReducers({
-  subreddits
+  tasks
 })
-
