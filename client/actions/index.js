@@ -1,9 +1,19 @@
 import request from 'superagent'
 
-export const receivePosts = (posts) => {
+export const receiveTasks = (tasks) => {
   return {
-    type: 'RECEIVE_POSTS',
-    posts: posts.map(post => post.data)
+    type: 'RECEIVE_TASKS',
+    tasks
+  }
+}
+export const getTasks = () => {
+  return (dispatch) => {
+    request
+      .get('/api/tasks')
+      .end((err, res) => {
+        console.log({res: res.body});
+        if (!err) dispatch(receiveTasks(res.body))
+      })
   }
 }
 
