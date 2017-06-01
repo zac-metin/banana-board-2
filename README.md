@@ -1,5 +1,9 @@
 # HappyTaskWall
 
+Wireframe:
+
+![banana](http://imgur.com/a/CZZWb)
+
 Learning Objectives:
 
 Matt: Not visual, staying away from the css. Getting nitty gritty in the back-end.
