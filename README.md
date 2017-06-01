@@ -17,3 +17,6 @@ Scrum Master - Andy
 Minimum Viable Product - Thursday June 1 :
 
 Two columns, ability to move task from column to column and add task.
+
+
+https://www.organicfacts.net/wp-content/uploads/2013/05/Banana3.jpg
