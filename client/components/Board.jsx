@@ -6,6 +6,7 @@ import Task from './Task'
 
 const Board = (props) => (
   <div className='Board'>
+    <p>Hello</p>
     {renderTasks(props.tasks)}
   </div>
 )

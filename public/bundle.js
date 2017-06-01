@@ -10669,6 +10669,10 @@ var _react = __webpack_require__(20);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _Board = __webpack_require__(237);
+
+var _Board2 = _interopRequireDefault(_Board);
+
 var _TasksContainer = __webpack_require__(100);
 
 var _TasksContainer2 = _interopRequireDefault(_TasksContainer);
@@ -10679,7 +10683,7 @@ var App = function App() {
   return _react2.default.createElement(
     'div',
     { className: 'app-container' },
-    _react2.default.createElement(_TasksContainer2.default, null)
+    _react2.default.createElement(_Board2.default, null)
   );
 };
 
@@ -26079,6 +26083,92 @@ module.exports = function(module) {
 	return module;
 };
 
+
+/***/ }),
+/* 237 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(20);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRedux = __webpack_require__(54);
+
+var _Task = __webpack_require__(238);
+
+var _Task2 = _interopRequireDefault(_Task);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Board = function Board(props) {
+  return _react2.default.createElement(
+    'div',
+    { className: 'Board' },
+    _react2.default.createElement(
+      'p',
+      null,
+      'Hello'
+    ),
+    renderTasks(props.tasks)
+  );
+};
+
+function renderTasks(taskArray) {
+  return taskArray.map(function (task) {
+    return _react2.default.createElement(_Task2.default, { key: task.id, task: task });
+  });
+}
+
+function mapState2Props(state) {
+  return {
+    tasks: state.tasks
+  };
+}
+
+exports.default = (0, _reactRedux.connect)(mapState2Props)(_Task2.default);
+
+/***/ }),
+/* 238 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(20);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Task = function Task(props) {
+  return _react2.default.createElement(
+    'div',
+    null,
+    _react2.default.createElement(
+      'div',
+      null,
+      props.taskname
+    ),
+    _react2.default.createElement(
+      'div',
+      null,
+      props.id
+    )
+  );
+};
+
+exports.default = Task;
 
 /***/ })
 /******/ ]);
