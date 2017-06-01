@@ -1,40 +1,16 @@
-function tasks(state = [{
-  id: 1,
-  taskName: 'create API',
-  description: 'set up an API for our project to use',
-  user_id: 1,
-  userName: 'JV',
-  completionStatus: 0,
-  complexity:4
-}, {
-  id: 2,
-  taskName: 'React',
-  description: 'create basic react components',
-  user_id: 2,
-  userName: 'JV',
-  completionStatus: 0,
-  complexity:6
 
-}, {
-  id: 3,
-  taskName: 'Redux',
-  description: 'plug react components into redux to update state',
-  user_id: 3,
-  userName: 'JV',
-  completionStatus: 0,
-  complexity:6
+import tasksArray from '../../data/tasks'
+const initialState = tasksArray.tasks
 
-}, {
-  id: 4,
-  taskName: 'CSS',
-  description: 'apply CSS to our project',
-  user_id: 4,
-  userName: 'JV',
-  completionStatus: 0,
-  complexity:2
+function tasks(state = initialState, action) {
+  console.log(state);
+   switch (action.type) {
+    case 'TOGGLE_STATUS':
+    return (
+       state.map((task) => {return action.id == task.id ? {...task, completionStatus: !task.completionStatus} : task})
+    )
 
-}], action) {
-  switch (action.type) {
+
     default: return state
   }
 }
