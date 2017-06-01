@@ -1,14 +1,31 @@
 import React from 'react'
-import Board from './Board'
+
+import {connect} from 'react-redux'
+import {getTasks} from '../actions/index'
 
 import Board from './Board'
 
 import TasksContainer from '../containers/TasksContainer'
 
-const App = () => (
-  <div className='app-container'>
-    <Board />
-  </div>
-)
+class App extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      dispatch: props.dispatch
+    }
+  }
+  componentDidMount() {
+    this.state.dispatch(getTasks())
+  }
+  render() {
+    return (
+      <div className='app-container'>
+        <TasksContainer/>
+
+      </div>
+    )
+  }
+}
+App = connect()(App)
 
 export default App
