@@ -1,12 +1,8 @@
 0 info it worked if it ends with ok
-1 verbose cli [ '/usr/bin/nodejs',
-1 verbose cli   '/usr/bin/npm',
-1 verbose cli   'run',
-1 verbose cli   'sqlite3',
-1 verbose cli   'dev.sqlite3' ]
+1 verbose cli [ '/usr/bin/nodejs', '/usr/bin/npm', 'run', 'knex', 'seed:run' ]
 2 info using npm@3.10.10
 3 info using node@v6.10.1
-4 verbose stack Error: missing script: sqlite3
+4 verbose stack Error: missing script: knex
 4 verbose stack     at run (/usr/lib/node_modules/npm/lib/run-script.js:151:19)
 4 verbose stack     at /usr/lib/node_modules/npm/lib/run-script.js:61:5
 4 verbose stack     at /usr/lib/node_modules/npm/node_modules/read-package-json/read-json.js:356:5
@@ -19,10 +15,10 @@
 4 verbose stack     at FSReqWrap.readFileAfterClose [as oncomplete] (fs.js:443:12)
 5 verbose cwd /home/zac/EDA Workspace/happy-task-wall2
 6 error Linux 4.4.0-64-generic
-7 error argv "/usr/bin/nodejs" "/usr/bin/npm" "run" "sqlite3" "dev.sqlite3"
+7 error argv "/usr/bin/nodejs" "/usr/bin/npm" "run" "knex" "seed:run"
 8 error node v6.10.1
 9 error npm  v3.10.10
-10 error missing script: sqlite3
+10 error missing script: knex
 11 error If you need help, you may report this error at:
 11 error     <https://github.com/npm/npm/issues>
 12 verbose exit [ 1, true ]
