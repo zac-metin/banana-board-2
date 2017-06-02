@@ -6,7 +6,7 @@ import {updateStatus} from '../actions'
 
 const Tasks = (props) => {
   return(
-  <div>
+  <div className='TasksContainer'>
     {props.tasks.map((task, i) =>
       <div key={i}>
       <li>Task: {task.taskName}; Assignee: {task.userName}; Complexity: {task.complexity}; Completion: {task.completionStatus}</li>

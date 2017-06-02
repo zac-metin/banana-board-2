@@ -16,7 +16,7 @@ const Board = (props) => {
 
 function renderTasks (taskArray) {
     return <Task key={task.id} task={task} />
-  })
+  }
 }
 
 function mapState2Props(state) {
