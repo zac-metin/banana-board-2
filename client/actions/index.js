@@ -11,7 +11,6 @@ export const getTasks = () => {
     request
       .get('/api/tasks')
       .end((err, res) => {
-        console.log({res: res.body});
         if (!err) dispatch(receiveTasks(res.body))
       })
   }
