@@ -5,6 +5,8 @@ import {getTasks} from '../actions/index'
 
 
 import TasksContainer from '../containers/TasksContainer'
+import Header from './Header'
+import TodoTasks from './TodoTasks'
 
 class App extends React.Component {
   constructor(props) {
@@ -19,7 +21,9 @@ class App extends React.Component {
   render() {
     return (
       <div className='app-container'>
-        <TasksContainer/>
+        <Header />
+        <TasksContainer />
+
 
       </div>
     )
