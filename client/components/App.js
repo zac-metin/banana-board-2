@@ -6,7 +6,7 @@ import {getTasks} from '../actions/index'
 
 import TasksContainer from '../containers/TasksContainer'
 import Header from './Header'
-import TodoTasks from './TodoTasks'
+import Footer from './Footer'
 
 class App extends React.Component {
   constructor(props) {
@@ -23,8 +23,7 @@ class App extends React.Component {
       <div className='app-container'>
         <Header />
         <TasksContainer />
-
-
+        <Footer />
       </div>
     )
   }

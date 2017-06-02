@@ -13,8 +13,11 @@ const Tasks = (props) => {
         <ul>
 
           {findTodos(props.tasks).map((task, i) =>
-            <div key={i}>
-              <li>Task: {task.taskName}; Assignee: {task.userName}; Complexity: {task.complexity}; Completion: {task.completionStatus}</li>
+            <div className='single-task' key={i}>
+              <h5>{task.taskName}</h5>
+              <li>{task.description}</li>
+              <li>Assignee: {task.userName}</li>
+              <li>Complexity: {task.complexity}<img className="complexity-img" src="banana.png" alt="banana" /></li>
               <button onClick={() => props.dispatch(updateStatus(task))}> &#60; </button>
               <button> &#62;	</button>
             </div>
@@ -25,8 +28,11 @@ const Tasks = (props) => {
         <h3>Completed Tasks</h3>
           <ul>
             {findCompleted(props.tasks).map((task, i) =>
-              <div key={i}>
-                <li>Task: {task.taskName}; Assignee: {task.userName}; Complexity: {task.complexity}; Completion: {task.completionStatus}</li>
+              <div className='single-task' key={i}>
+                <h5>{task.taskName}</h5>
+                <li>{task.description}</li>
+                <li>Assignee: {task.userName}</li>
+                <li>Complexity: {task.complexity}<img className="complexity-img" src="banana.png" alt="banana" /></li>
                 <button onClick={() => props.dispatch(updateStatus(task))}> &#60; </button>
                 <button> &#62;	</button>
               </div>
