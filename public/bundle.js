@@ -6824,8 +6824,8 @@ var toggleStatus = exports.toggleStatus = function toggleStatus(task) {
 
 var updateStatusLeft = exports.updateStatusLeft = function updateStatusLeft(task) {
   return function (dispatch) {
+    console.log(dispatch);
     _superagent2.default.put('/api/tasks/' + task.id).send(task).end(function (err, res) {
-      console.log({ res: res.body });
       console.log(err);
       if (!err) dispatch(getTasks());
     });
@@ -10938,7 +10938,6 @@ var _actions = __webpack_require__(55);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Tasks = function Tasks(props) {
-  console.log(props.tasks);
   return _react2.default.createElement(
     'div',
     { className: 'all-tasks' },
@@ -11123,6 +11122,7 @@ function tasks() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
   var action = arguments[1];
 
+  console.log(action);
   switch (action.type) {
     case 'RECEIVE_TASKS':
       return [].concat(_toConsumableArray(action.tasks));

@@ -3,6 +3,7 @@ import tasksArray from '../../data/tasks'
 const initialState = []
 
 function tasks(state = initialState, action) {
+  console.log(action);
    switch (action.type) {
      case 'RECEIVE_TASKS':
      return [...action.tasks]

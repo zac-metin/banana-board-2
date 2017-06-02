@@ -5,7 +5,6 @@ import {updateStatusLeft} from '../actions'
 
 
 const Tasks = (props) => {
-  console.log(props.tasks)
   return(
     <div className='all-tasks'>
       <div className="todo-tasks six columns">
