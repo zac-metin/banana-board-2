@@ -10737,13 +10737,13 @@ var _TasksContainer = __webpack_require__(102);
 
 var _TasksContainer2 = _interopRequireDefault(_TasksContainer);
 
-var _Header = __webpack_require__(100);
+var _Header = __webpack_require__(101);
 
 var _Header2 = _interopRequireDefault(_Header);
 
-var _TodoTasks = __webpack_require__(101);
+var _Footer = __webpack_require__(100);
 
-var _TodoTasks2 = _interopRequireDefault(_TodoTasks);
+var _Footer2 = _interopRequireDefault(_Footer);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -10779,7 +10779,8 @@ var App = function (_React$Component) {
         'div',
         { className: 'app-container' },
         _react2.default.createElement(_Header2.default, null),
-        _react2.default.createElement(_TasksContainer2.default, null)
+        _react2.default.createElement(_TasksContainer2.default, null),
+        _react2.default.createElement(_Footer2.default, null)
       );
     }
   }]);
@@ -10870,28 +10871,19 @@ var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var Header = function Header() {
+var Footer = function Footer() {
   return _react2.default.createElement(
     "div",
-    { className: "header twelve columns" },
+    { className: "footer twelve columns" },
     _react2.default.createElement(
-      "div",
-      { className: "add-task" },
-      _react2.default.createElement(
-        "button",
-        null,
-        "Add"
-      )
-    ),
-    _react2.default.createElement(
-      "h1",
+      "p",
       null,
-      "Banana Board"
+      "\xA9 2017 Don't Be Hasty"
     )
   );
 };
 
-exports.default = Header;
+exports.default = Footer;
 
 /***/ }),
 /* 101 */
@@ -10910,20 +10902,24 @@ var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var TodoTasks = function TodoTasks(props) {
-  console.log("props from TodoTasks:", props);
+var Header = function Header() {
   return _react2.default.createElement(
     "div",
-    { className: "todo-tasks six columns" },
+    { className: "header twelve columns" },
+    _react2.default.createElement("img", { src: "banana.png", alt: "banana" }),
     _react2.default.createElement(
-      "p",
+      "h1",
       null,
-      "Tasks that need to be done"
+      "Banana Board "
     )
   );
 };
 
-exports.default = TodoTasks;
+exports.default = Header;
+
+// <div className="add-task">
+//   <button>Add</button>
+// </div>
 
 /***/ }),
 /* 102 */
@@ -10964,31 +10960,40 @@ var Tasks = function Tasks(props) {
         findTodos(props.tasks).map(function (task, i) {
           return _react2.default.createElement(
             'div',
-            { key: i },
+            { className: 'single-task', key: i },
+            _react2.default.createElement(
+              'h5',
+              null,
+              task.taskName
+            ),
             _react2.default.createElement(
               'li',
               null,
-              'Task: ',
-              task.taskName,
-              '; Assignee: ',
-              task.userName,
-              '; Complexity: ',
+              task.description
+            ),
+            _react2.default.createElement(
+              'li',
+              null,
+              'Assignee: ',
+              task.userName
+            ),
+            _react2.default.createElement(
+              'li',
+              null,
+              'Complexity: ',
               task.complexity,
-              '; Completion: ',
-              task.completionStatus
+              _react2.default.createElement('img', { className: 'complexity-img', src: 'banana.png', alt: 'banana' })
             ),
             _react2.default.createElement(
               'button',
               { onClick: function onClick() {
-                  return props.dispatch((0, _actions.updateStatusLeft)(task));
+                  return props.dispatch(updateStatus(task));
                 } },
               ' < '
             ),
             _react2.default.createElement(
               'button',
-              { onClick: function onClick() {
-                  return props.dispatch((0, _actions.updateStatusRight)(task));
-                } },
+              null,
               ' > '
             )
           );
@@ -11009,31 +11014,40 @@ var Tasks = function Tasks(props) {
         findCompleted(props.tasks).map(function (task, i) {
           return _react2.default.createElement(
             'div',
-            { key: i },
+            { className: 'single-task', key: i },
+            _react2.default.createElement(
+              'h5',
+              null,
+              task.taskName
+            ),
             _react2.default.createElement(
               'li',
               null,
-              'Task: ',
-              task.taskName,
-              '; Assignee: ',
-              task.userName,
-              '; Complexity: ',
+              task.description
+            ),
+            _react2.default.createElement(
+              'li',
+              null,
+              'Assignee: ',
+              task.userName
+            ),
+            _react2.default.createElement(
+              'li',
+              null,
+              'Complexity: ',
               task.complexity,
-              '; Completion: ',
-              task.completionStatus
+              _react2.default.createElement('img', { className: 'complexity-img', src: 'banana.png', alt: 'banana' })
             ),
             _react2.default.createElement(
               'button',
               { onClick: function onClick() {
-                  return props.dispatch((0, _actions.updateStatusLeft)(task));
+                  return props.dispatch(updateStatus(task));
                 } },
               ' < '
             ),
             _react2.default.createElement(
               'button',
-              { onClick: function onClick() {
-                  return props.dispatch((0, _actions.updateStatusRight)(task));
-                } },
+              null,
               ' > '
             )
           );
