@@ -6793,7 +6793,7 @@ module.exports = g;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.updateStatusLeft = exports.toggleStatus = exports.getTasks = exports.receiveTasks = undefined;
+exports.updateStatusRight = exports.updateStatusLeft = exports.toggleStatus = exports.getTasks = exports.receiveTasks = undefined;
 
 var _superagent = __webpack_require__(232);
 
@@ -6825,7 +6825,16 @@ var toggleStatus = exports.toggleStatus = function toggleStatus(task) {
 var updateStatusLeft = exports.updateStatusLeft = function updateStatusLeft(task) {
   return function (dispatch) {
     console.log(dispatch);
-    _superagent2.default.put('/api/tasks/' + task.id).send(task).end(function (err, res) {
+    _superagent2.default.put('/api/tasks/minus/' + task.id).send(task).end(function (err, res) {
+      console.log(err);
+      if (!err) dispatch(getTasks());
+    });
+  };
+};
+var updateStatusRight = exports.updateStatusRight = function updateStatusRight(task) {
+  return function (dispatch) {
+    console.log(dispatch);
+    _superagent2.default.put('/api/tasks/plus/' + task.id).send(task).end(function (err, res) {
       console.log(err);
       if (!err) dispatch(getTasks());
     });
@@ -10977,7 +10986,9 @@ var Tasks = function Tasks(props) {
             ),
             _react2.default.createElement(
               'button',
-              null,
+              { onClick: function onClick() {
+                  return props.dispatch((0, _actions.updateStatusRight)(task));
+                } },
               ' > '
             )
           );
@@ -11014,13 +11025,15 @@ var Tasks = function Tasks(props) {
             _react2.default.createElement(
               'button',
               { onClick: function onClick() {
-                  return props.dispatch(updateStatus(task));
+                  return props.dispatch((0, _actions.updateStatusLeft)(task));
                 } },
               ' < '
             ),
             _react2.default.createElement(
               'button',
-              null,
+              { onClick: function onClick() {
+                  return props.dispatch((0, _actions.updateStatusRight)(task));
+                } },
               ' > '
             )
           );

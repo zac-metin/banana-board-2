@@ -1,6 +1,6 @@
 import {connect} from 'react-redux'
 import React from 'react'
-import {updateStatusLeft} from '../actions'
+import {updateStatusLeft, updateStatusRight} from '../actions'
 
 
 
@@ -15,7 +15,7 @@ const Tasks = (props) => {
             <div key={i}>
               <li>Task: {task.taskName}; Assignee: {task.userName}; Complexity: {task.complexity}; Completion: {task.completionStatus}</li>
               <button onClick={() => props.dispatch(updateStatusLeft(task))}> &#60; </button>
-              <button> &#62;	</button>
+              <button onClick={() => props.dispatch(updateStatusRight(task))}> &#62;	</button>
             </div>
           )}
         </ul>
@@ -26,8 +26,8 @@ const Tasks = (props) => {
             {findCompleted(props.tasks).map((task, i) =>
               <div key={i}>
                 <li>Task: {task.taskName}; Assignee: {task.userName}; Complexity: {task.complexity}; Completion: {task.completionStatus}</li>
-                <button onClick={() => props.dispatch(updateStatus(task))}> &#60; </button>
-                <button> &#62;	</button>
+                <button onClick={() => props.dispatch(updateStatusLeft(task))}> &#60; </button>
+                <button  onClick={() => props.dispatch(updateStatusRight(task))}> &#62;	</button>
               </div>
             )}
           </ul>

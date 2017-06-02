@@ -17,14 +17,21 @@ const updateTaskRight = (db, task_id) => {
 
   })
 }
-
 const updateTaskLeft = (db, task_id) => {
   return db('tasks')
   .where('id', task_id)
-  .update({
-    completionStatus: completionStatus-1
+  .first()
+  .then((res) => {
+    return db('tasks')
+    .where('id', task_id)
+    .update({
+      completionStatus: res.completionStatus-1
+    })
+
   })
 }
+
+
 
 module.exports = {
   getTasks,
