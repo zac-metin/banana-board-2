@@ -11,12 +11,19 @@ router.get('/', (req, res) => {
     })
 })
 
-router.put('/:id', (req,res) => {
-  console.log("llalalala");
+router.put('/plus/:id', (req,res) => {
   let db = req.app.get('db')
   tasksDB.updateTaskRight(db, req.params.id)
   .then(() => {
-    console.log("Ticket moved left");
+    res.sendStatus(202)
+  })
+})
+
+router.put('/minus/:id', (req,res) => {
+  let db = req.app.get('db')
+  tasksDB.updateTaskLeft(db, req.params.id)
+  .then(() => {
+    res.sendStatus(202)
   })
 })
 

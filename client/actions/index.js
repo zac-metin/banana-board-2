@@ -25,11 +25,23 @@ export const toggleStatus = (task) => {
 
 export const updateStatusLeft = (task) => {
   return (dispatch) => {
+    console.log(dispatch);
     request
-      .put(`/api/tasks/${task.id}`)
+      .put(`/api/tasks/minus/${task.id}`)
       .send(task)
       .end((err, res) => {
-        console.log({res: res.body});
+        console.log(err);
+        if (!err) dispatch(getTasks())
+      })
+  }
+}
+export const updateStatusRight = (task) => {
+  return (dispatch) => {
+    console.log(dispatch);
+    request
+      .put(`/api/tasks/plus/${task.id}`)
+      .send(task)
+      .end((err, res) => {
         console.log(err);
         if (!err) dispatch(getTasks())
       })
