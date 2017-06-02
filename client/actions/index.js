@@ -11,7 +11,6 @@ export const getTasks = () => {
     request
       .get('/api/tasks')
       .end((err, res) => {
-        console.log({res: res.body});
         if (!err) dispatch(receiveTasks(res.body))
       })
   }
@@ -31,7 +30,6 @@ export const updateStatus = (task) => {
       .put('/api/tasks')
       .send(task)
       .end((err, res) => {
-        console.log({res: res.body});
         if (!err) dispatch({type: 'TOGGLE_STATUS', id: task.id})
       })
 
