@@ -31,10 +31,20 @@ const updateTaskLeft = (db, task_id) => {
   })
 }
 
+const addTask = (db, task) => {
+  return db('tasks')
+  .insert({
+      taskName: task.taskName,
+      description: task.description,
+      completionStatus: 0,
+    })
+}
+
 
 
 module.exports = {
   getTasks,
   updateTaskLeft,
-  updateTaskRight
+  updateTaskRight,
+  addTask
 }
