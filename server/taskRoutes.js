@@ -27,4 +27,17 @@ router.put('/minus/:id', (req,res) => {
   })
 })
 
+router.post('/', (req, res) => {
+  let db = req.app.get('db')
+  db.addUser(db, req.body)
+    .then(() => {
+      res.redirect('/')
+    })
+})
+
+
+
+
+
+
 module.exports = router
