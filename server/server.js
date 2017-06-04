@@ -22,4 +22,7 @@ server.use(express.static(path.join(__dirname, '../public')))
 
 server.use('/api/tasks', taskRoutes)
 
-module.exports = server
+module.exports = (db) => {
+  server.set('db', db)
+  return server
+}

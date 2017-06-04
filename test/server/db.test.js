@@ -7,7 +7,6 @@ configureDatabase(test)
 var db = require('../../server/db')
 
 test('getTasks gets all tasks', function(t) {
-  // One for each letter of the alphabet!
   var expected = 4
   return db.getTasks(t.context.connection)
     .then(function(result) {

@@ -5,22 +5,21 @@
 var test = require('ava')
 var request = require('supertest')
 
-var app = require('../../server')
+var app = require('../../server/server')
 var configureDatabase = require('./helpers/database-config')
 
-configureDatabase(test, function (db) {
-  app.set('knex', db)
-})
-
+configureDatabase(test, app)
 test.cb('able to get all tasks', function (t) {
-  var expected = 26
-  request(app)
-    .get('/tasks')
+  console.log("test");
+  var expected = 4
+  request(t.context.app)
+    .get('/api/tasks')
     .expect('Content-Type', /json/)
     .expect(200)
-    .end(function (err, res) {
+    .end((err, res) => {
       if (err) throw err
-      t.is(res.body.tasks.length, expected)
+      console.log("response");
+      t.is(res.body.length, expected)
       t.end()
     })
 })
