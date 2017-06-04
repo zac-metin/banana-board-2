@@ -57,6 +57,8 @@
     "express": "^4.15.3",
     "knex": "^0.13.0",
     "pg": "^6.2.3",
+    "react-dnd": "^2.4.0",
+    "react-dnd-html5-backend": "^2.4.1",
     "sqlite3": "^3.1.8",
     "superagent": "^2.2.0"
   }
