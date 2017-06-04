@@ -4,37 +4,38 @@ const getTasks = (db) => {
     .select('*')
 }
 
-const updateTaskRight = (db, task_id) => {
+
+const updateTask = (db, task) => {
   return db('tasks')
-  .where('id', task_id)
+  .where('id', task.id)
   .first()
   .then((res) => {
     return db('tasks')
-    .where('id', task_id)
+    .where('id', task.id)
     .update({
-      completionStatus: res.completionStatus+1
+      completionStatus: task.completionStatus,
+      id: task.id,
+      taskName: task.taskName,
+      description: task.description,
+       user_id: task.user_id,
+       userName: task.userName
     })
-
   })
 }
-const updateTaskLeft = (db, task_id) => {
-  return db('tasks')
-  .where('id', task_id)
-  .first()
-  .then((res) => {
-    return db('tasks')
-    .where('id', task_id)
-    .update({
-      completionStatus: res.completionStatus-1
-    })
 
-  })
+const addTask = (db, task) => {
+  return db('tasks')
+  .insert({
+      taskName: task.taskName,
+      description: task.description,
+      completionStatus: 0,
+    })
 }
 
 
 
 module.exports = {
   getTasks,
-  updateTaskLeft,
-  updateTaskRight
+  updateTask,
+  addTask
 }

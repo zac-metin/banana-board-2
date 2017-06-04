@@ -16,33 +16,14 @@ export const getTasks = () => {
   }
 }
 
-export const toggleStatus = (task) => {
-  return {
-    type: 'TOGGLE_STATUS',
-    id: task.id
-  }
-}
 
-export const updateStatusLeft = (task) => {
+export const updateStatus = (task, increment) => {
+  let newTask = {...task, completionStatus:task.completionStatus+increment}
   return (dispatch) => {
-    console.log(dispatch);
     request
-      .put(`/api/tasks/minus/${task.id}`)
-      .send(task)
+      .put(`/api/tasks/${task.id}`)
+      .send(newTask)
       .end((err, res) => {
-        console.log(err);
-        if (!err) dispatch(getTasks())
-      })
-  }
-}
-export const updateStatusRight = (task) => {
-  return (dispatch) => {
-    console.log(dispatch);
-    request
-      .put(`/api/tasks/plus/${task.id}`)
-      .send(task)
-      .end((err, res) => {
-        console.log(err);
         if (!err) dispatch(getTasks())
       })
   }

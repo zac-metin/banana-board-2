@@ -2,11 +2,13 @@ import React from 'react'
 
 import {connect} from 'react-redux'
 import {getTasks} from '../actions/index'
+import {HashRouter as Router, Route} from 'react-router-dom'
 
 
 import TasksContainer from '../containers/TasksContainer'
 import Header from './Header'
 import Footer from './Footer'
+import Form from './Form'
 
 class App extends React.Component {
   constructor(props) {
@@ -20,11 +22,15 @@ class App extends React.Component {
   }
   render() {
     return (
-      <div className='app-container'>
-        <Header />
-        <TasksContainer />
-        <Footer />
-      </div>
+       <Router>
+       <div className='app-container'>
+         <Header />
+        <Route exact={true} path='/' component={TasksContainer} />
+        <Route exact={true} path='/addTask' component={Form} />
+         <Footer />
+       </div>
+        </Router>
+
     )
   }
 }
