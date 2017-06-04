@@ -1,6 +1,6 @@
 import {connect} from 'react-redux'
 import React from 'react'
-import { updateStatusLeft, updateStatusRight } from '../actions'
+import {updateStatus } from '../actions'
 
 const Tasks = (props) => {
   return(
@@ -15,8 +15,8 @@ const Tasks = (props) => {
               <li>{task.description}</li>
               <li>Assignee: {task.userName}</li>
               <li>Complexity: {task.complexity}<img className="complexity-img" src="banana.png" alt="banana" /></li>
-              <button onClick={() => props.dispatch(updateStatusLeft(task))}> &#60; </button>
-              <button onClick={() => props.dispatch(updateStatusRight(task))}> &#62;	</button>
+              <button onClick={() => props.dispatch(updateStatus(task, -1))}> &#60;	</button>
+              <button onClick={() => props.dispatch(updateStatus(task, 1))}> &#62;	</button>
             </div>
           )}
         </ul>
@@ -30,9 +30,10 @@ const Tasks = (props) => {
                 <li>{task.description}</li>
                 <li>Assignee: {task.userName}</li>
                 <li>Complexity: {task.complexity}<img className="complexity-img" src="banana.png" alt="banana" /></li>
-                <button onClick={() => props.dispatch(updateStatusLeft(task))}> &#60; </button>
-                <button onClick={() => props.dispatch(updateStatusRight(task))}> &#62;	</button>
+                <button onClick={() => props.dispatch(updateStatus(task, -1))}> &#60;	</button>
+                <button onClick={() => props.dispatch(updateStatus(task, 1))}> &#62;	</button>
               </div>
+
             )}
           </ul>
       </div>

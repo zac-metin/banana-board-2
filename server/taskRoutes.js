@@ -11,17 +11,9 @@ router.get('/', (req, res) => {
     })
 })
 
-router.put('/plus/:id', (req,res) => {
+router.put('/:id', (req,res) => {
   let db = req.app.get('db')
-  tasksDB.updateTaskRight(db, req.params.id)
-  .then(() => {
-    res.sendStatus(202)
-  })
-})
-
-router.put('/minus/:id', (req,res) => {
-  let db = req.app.get('db')
-  tasksDB.updateTaskLeft(db, req.params.id)
+  tasksDB.updateTask(db, req.body)
   .then(() => {
     res.sendStatus(202)
   })
@@ -34,10 +26,6 @@ router.post('/', (req, res) => {
       res.redirect('/')
     })
 })
-
-
-
-
 
 
 module.exports = router
