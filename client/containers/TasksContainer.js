@@ -1,12 +1,16 @@
 import {connect} from 'react-redux'
 import React from 'react'
 import {updateStatus } from '../actions'
+import {Link} from 'react-router-dom'
 
 const Tasks = (props) => {
   return(
     <div className='all-tasks'>
       <div className="todo-tasks six columns">
         <h3>Todo Tasks</h3>
+        <Link to={'/addTask'}>
+          <button> Add task	</button>
+      </Link>
         <ul>
 
           {findTodos(props.tasks).map((task, i) =>
