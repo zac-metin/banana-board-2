@@ -2,7 +2,7 @@
 import {connect} from 'react-redux'
 import React from 'react'
 import {Link} from 'react-router-dom'
-import { DragDropContext} from 'react-dnd'
+import { DragDropContext } from 'react-dnd'
 import HTML5Backend from 'react-dnd-html5-backend';
 
 import {updateStatus } from '../actions'
