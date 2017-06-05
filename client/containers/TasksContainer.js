@@ -15,7 +15,7 @@ const Tasks = (props) => {
   )
 }
 
-const columns = [{column_value:0, name: 'Todo'}, {column_value:1, name: 'In Progress'}, {column_value:2, name: 'hoop de doo'}, {column_value: 3, name:'Completed'}]
+const columns = [{column_value:0, name: 'Todo'}, {column_value:1, name: 'In Progress'}, {column_value:2, name: 'Blocked'}, {column_value: 3, name:'Completed'}]
 
 
 

@@ -21,7 +21,7 @@ router.put('/:id', (req,res) => {
 
 router.post('/', (req, res) => {
 
- let connection = req.app.get('db')
+ let connection = req.app.get('connection')
  tasksDB.addTask(connection, req.body)
    .then((task) => {
      res.status(201).json(task[0])

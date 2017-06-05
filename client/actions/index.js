@@ -21,7 +21,7 @@ export const updateStatus = (task, increment) => {
   let newTask = {...task, completionStatus:task.completionStatus+increment}
   return (dispatch) => {
     request
-      .put(`/api/tasks/${ttask, ask.id}`)
+      .put(`/api/tasks/${task, task.id}`)
       .send(newTask)
       .end((err, res) => {
         if (!err) dispatch(getTasks())
@@ -30,6 +30,7 @@ export const updateStatus = (task, increment) => {
 }
 
 export const addTask = (newTask) => {
+  console.log(newTask);
   return (dispatch) => {
     request
       .post('/api/tasks/')
