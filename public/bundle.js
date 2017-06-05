@@ -14646,6 +14646,7 @@ var Column = function Column(props) {
               )
             )
           ),
+          _react2.default.createElement('hr', null),
           _react2.default.createElement(
             'li',
             null,
@@ -14658,23 +14659,26 @@ var Column = function Column(props) {
           _react2.default.createElement(
             'li',
             null,
-            'Complexity: ',
-            task.complexity,
-            _react2.default.createElement('img', { className: 'complexity-img', src: 'banana.png', alt: 'banana' })
-          ),
-          _react2.default.createElement(
-            'button',
-            { onClick: function onClick() {
-                return props.dispatch((0, _actions.updateStatus)(task, -1));
-              } },
-            ' < '
-          ),
-          _react2.default.createElement(
-            'button',
-            { onClick: function onClick() {
-                return props.dispatch((0, _actions.updateStatus)(task, 1));
-              } },
-            ' > '
+            _react2.default.createElement(
+              'div',
+              { className: 'flexrow' },
+              _react2.default.createElement(
+                'div',
+                { className: 'leftarrow', onClick: function onClick() {
+                    return props.dispatch((0, _actions.updateStatus)(task, -1));
+                  } },
+                '\uD83E\uDC70'
+              ),
+              task.complexity,
+              _react2.default.createElement('img', { className: 'complexity-img', src: 'banana.png', alt: 'banana' }),
+              _react2.default.createElement(
+                'div',
+                { className: 'rightarrow', onClick: function onClick() {
+                    return props.dispatch((0, _actions.updateStatus)(task, 1));
+                  } },
+                '\uD83E\uDC72'
+              )
+            )
           )
         );
       })

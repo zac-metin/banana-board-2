@@ -15,10 +15,14 @@ const Column = (props) => {
     {matchColumn(props.columnValue,props.tasks).map((task, i) =>
       <div className='single-task' key={i}>
         <li><h5>{task.taskName}<span className="userName">{task.userName}</span></h5></li>
+        <hr />
         <li><span className="description">{task.description}</span></li>
-        <li>Complexity: {task.complexity}<img className="complexity-img" src="banana.png" alt="banana" /></li>
-        <button onClick={() => props.dispatch(updateStatus(task, -1))}> &#60; </button>
-        <button onClick={() => props.dispatch(updateStatus(task, 1))}> &#62;	</button>
+        <li><div className="flexrow">
+        <div className="leftarrow" onClick={() => props.dispatch(updateStatus(task, -1))}>🡰</div>
+        {task.complexity}<img className="complexity-img" src="banana.png" alt="banana"></img>
+        <div className="rightarrow" onClick={() => props.dispatch(updateStatus(task, 1))}>🡲</div>
+         </div>
+        </li>
       </div>
     )}
   </ul>

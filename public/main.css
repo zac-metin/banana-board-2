@@ -1,14 +1,14 @@
 body {
   font-family: 'Playfair Display';
-  margin: 0 auto;
+  margin: 0;
   text-align: center;
-  padding: 2em 4em;
+  padding: 0em 2em 0em 4em;
   background: #d3ab55;
 }
 
 h1 {
 	color: #333;
-	font-size: 60px;
+	font-size: 40px;
 	font-weight: 500;
 	line-height: 60px;
 	margin-bottom: 60px;
@@ -63,6 +63,9 @@ li {
 
 .header {
   display: inline-block;
+  background-color: black;
+  padding: 0px;
+  margin: 0px;
 }
 
 .add-task {
@@ -105,6 +108,9 @@ img {
   margin-bottom: -8px;
   float: none;
   width: 23px;
+  height: 23px;
+  align: center;
+  padding-right: 2vh;
 }
 
 button {
@@ -123,4 +129,24 @@ button {
 .description {
   font-style: italic;
   font-size: 2.3vh;
+}
+.flexrow {
+  display: flex;
+  width: 100%;
+  flex: row;
+}
+
+.leftarrow {
+  text-align: left;
+  padding-right: 6vh;
+}
+
+.rightarrow {
+  padding-left: 2vh;
+  text-align: right;
+}
+hr {
+  padding: 0px;
+  margin: 0px;
+  background-color: black;
 }
