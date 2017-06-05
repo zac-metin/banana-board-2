@@ -9,9 +9,9 @@ body {
 
 h1 {
 	color: yellow;
-	font-size: 40px;
+	font-size: 25px;
 	font-weight: 500;
-	line-height: 60px;
+	line-height: 28px;
 
 }
 p {
@@ -89,7 +89,7 @@ li {
 }
 
 img {
-  width: 8%;
+  width: 8vh;
   margin-top: 0px;
   float: left;
 }
