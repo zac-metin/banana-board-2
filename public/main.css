@@ -113,3 +113,14 @@ button {
   border: 1px solid #333;
   margin-right: 5px;
 }
+
+.userName {
+  border: 2px solid black;
+  margin-left: 4vh;
+  padding: 1.6vh;
+  font-size: 3vh;
+}
+.description {
+  font-style: italic;
+  font-size: 2.3vh;
+}

@@ -14624,25 +14624,31 @@ var Column = function Column(props) {
           'div',
           { className: 'single-task', key: i },
           _react2.default.createElement(
-            'h5',
+            'li',
             null,
-            task.taskName
+            _react2.default.createElement(
+              'h5',
+              null,
+              task.taskName,
+              _react2.default.createElement(
+                'span',
+                { className: 'userName' },
+                task.userName
+              )
+            )
           ),
           _react2.default.createElement(
             'li',
             null,
-            task.description
+            _react2.default.createElement(
+              'span',
+              { className: 'description' },
+              task.description
+            )
           ),
           _react2.default.createElement(
             'li',
             null,
-            'Assignee: ',
-            task.userName
-          ),
-          _react2.default.createElement(
-            'li',
-            null,
-            'Complexity: ',
             task.complexity,
             _react2.default.createElement('img', { className: 'complexity-img', src: 'banana.png', alt: 'banana' })
           ),
@@ -14651,14 +14657,14 @@ var Column = function Column(props) {
             { onClick: function onClick() {
                 return props.dispatch((0, _actions.updateStatus)(task, -1));
               } },
-            ' < '
+            '<'
           ),
           _react2.default.createElement(
             'button',
             { onClick: function onClick() {
                 return props.dispatch((0, _actions.updateStatus)(task, 1));
               } },
-            ' > '
+            '>'
           )
         );
       })
