@@ -37,9 +37,6 @@ test.cb('able to get all projects', function (t) {
     })
 })
 
-
-
-
 test('POST /projects', (t) => {
   return request(t.context.app)
     .post('/api/projects')

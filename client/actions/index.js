@@ -40,3 +40,22 @@ export const addTask = (newTask) => {
       })
   }
 }
+
+
+
+export const receiveProjects = (projects) => {
+  return {
+    type: 'RECEIVE_PROJECTS',
+    projects
+  }
+}
+export const getProjects = () => {
+  return (dispatch) => {
+    request
+      .get('/api/projects')
+      .end((err, res) => {
+        console.log(res.body);
+        if (!err) dispatch(receiveProjects(res.body))
+      })
+  }
+}
