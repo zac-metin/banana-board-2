@@ -8,20 +8,16 @@ import Column from '../components/Column';
 
 const Tasks = (props) => {
   return(
-    <div className='all-tasks'>
 
-      <Column id="0" name="Todo" />
-      <Column id="1" name="In Progress" />
-      <Column id="2" name="Blocked" />
-      <Column id="3" name="Completed" />
+    <div className='all-tasks'>
+{columns.map((column) =>   <Column columnValue={column.column_value} name={column.name} />)}
     </div>
   )
 }
 
+const columns = [{column_value:0, name: 'Todo'}, {column_value:1, name: 'In Progress'}, {column_value:2, name: 'hoop de doo'}, {column_value: 3, name:'Completed'}]
 
-function matchColumn(col,props) {
-  return props.tasks.filter((task) => task.completionStatus == col)
-}
+
 
 const mapStateToProps = (state) => {
   return {

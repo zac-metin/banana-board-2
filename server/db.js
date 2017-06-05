@@ -34,10 +34,24 @@ const addTask = (db, task) => {
     })
 }
 
+const getProjects = (db) => {
+  return db('projects')
+    .select('*')
+}
+
+
+const addProject = (project, db) => {
+  return db('projects')
+  .insert({
+      name: project.name,
+    })
+}
 
 
 module.exports = {
   getTasks,
   updateTask,
-  addTask
+  addTask,
+  getProjects,
+  addProject
 }
