@@ -15,7 +15,6 @@ const Column = (props) => {
     {matchColumn(props.columnValue,props.tasks).map((task, i) =>
       <div className='single-task' key={i}>
         <li><h5>{task.taskName}<span className="userName">{task.userName}</span></h5></li>
-        <hr />
         <li><span className="description">{task.description}</span></li>
         <li><div className="flexrow">
         <div className="leftarrow" onClick={() => props.dispatch(updateStatus(task, -1))}>🡰</div>

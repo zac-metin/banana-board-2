@@ -3,7 +3,7 @@ body {
   font-family: 'Playfair Display';
   margin: 0;
   text-align: center;
-  padding: 0em 2em 0em 4em;
+  padding: 0em 0em 0em 0em;
   background: #d3ab55;
 }
 
@@ -112,6 +112,7 @@ img {
   height: 23px;
   align: center;
   padding-right: 2vh;
+  padding-top: 1vh;
 }
 
 button {
@@ -146,8 +147,22 @@ button {
   padding-left: 2vh;
   text-align: right;
 }
+.leftarrow:hover, .rightarrow:hover {
+  color: #555555;
+}
 hr {
   padding: 0px;
   margin: 0px;
   background-color: black;
+}
+.project-name {
+	color: #000000;	border-bottom: 1px solid #d3ab55;
+	display: inline-block;
+	line-height: 36px;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #444444;
+	border-bottom: 1px solid #d3ab55;
 }
