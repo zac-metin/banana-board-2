@@ -8,24 +8,12 @@ body {
 }
 
 h1 {
-	color: #333;
+	color: yellow;
 	font-size: 40px;
 	font-weight: 500;
 	line-height: 60px;
-	margin-bottom: 60px;
-  text-transform: uppercase;
 
 }
-
-h1:after {
-	background: #333;
-	content: '';
-	display: block;
-	height: 2px;
-	margin: 59px auto;
-	width: 50px;
-}
-
 p {
 	color: #555;
 	font-size: 22px;
@@ -67,6 +55,7 @@ li {
   background-color: black;
   padding: 0px;
   margin: 0px;
+  font-family: 'Pacifico';
 }
 
 .add-task {

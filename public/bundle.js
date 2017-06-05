@@ -14891,7 +14891,7 @@ var Header = function Header() {
     _react2.default.createElement(
       "h1",
       null,
-      "Banana Board "
+      "Banana Board"
     )
   );
 };

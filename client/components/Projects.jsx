@@ -4,7 +4,6 @@ import {Link} from 'react-router-dom'
 
 const Projects = (props) => {
   return(
-
     <div className='all-projects'>
 <ul>{props.projects.map((project,id) => <Link to={'/tasks'} className="project-name twelve columns"> <li>{" "+project.name+" "}</li>
 </Link>
