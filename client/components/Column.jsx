@@ -1,7 +1,7 @@
 import {connect} from 'react-redux'
 import React from 'react'
 import {Link} from 'react-router-dom'
-import { DragDropContext} from 'react-dnd'
+import { DragDropContext } from 'react-dnd'
 import HTML5Backend from 'react-dnd-html5-backend';
 
 import {updateStatus } from '../actions'
@@ -13,12 +13,11 @@ const Column = (props) => {
   <ul>
     {matchColumn(props.id,props.tasks).map((task, i) =>
       <div className='single-task' key={i}>
-        <h5>{task.taskName}</h5>
-        <li>{task.description}</li>
-        <li>Assignee: {task.userName}</li>
-        <li>Complexity: {task.complexity}<img className="complexity-img" src="banana.png" alt="banana" /></li>
-        <button onClick={() => props.dispatch(updateStatus(task, -1))}> &#60; </button>
-        <button onClick={() => props.dispatch(updateStatus(task, 1))}> &#62;	</button>
+        <li><h5>{task.taskName}<span className="userName">{task.userName}</span></h5></li>
+        <li><span className="description">{task.description}</span></li>
+        <li>{task.complexity}<img className="complexity-img" src="banana.png" alt="banana" /></li>
+        <button onClick={() => props.dispatch(updateStatus(task, -1))}>&#60;</button>
+        <button onClick={() => props.dispatch(updateStatus(task, 1))}>&#62;</button>
       </div>
     )}
   </ul>
