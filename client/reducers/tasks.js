@@ -1,5 +1,4 @@
 
-import tasksArray from '../../data/tasks'
 const initialState = []
 
 function tasks(state = initialState, action) {

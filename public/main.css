@@ -34,14 +34,15 @@ p {
 
 a {
 	color: #d3ab55;	border-bottom: 1px solid #d3ab55;
-	display: inline-block;
 	line-height: 36px;
-	text-decoration: none;
+  display: inline-block;
+
 }
 
 a:hover {
 	color: #555;
 	border-bottom: 1px solid #555;
+  line-height: 36px;
 }
 
 
@@ -112,4 +113,9 @@ button {
   color: #333;
   border: 1px solid #333;
   margin-right: 5px;
+}
+
+
+.project-name {
+  
 }
