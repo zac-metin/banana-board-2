@@ -1,77 +1,23 @@
-
 import {connect} from 'react-redux'
 import React from 'react'
+import {Link} from 'react-router-dom'
 import { DragDropContext} from 'react-dnd'
 import HTML5Backend from 'react-dnd-html5-backend';
 
-import { updateStatus } from '../actions'
+import Column from '../components/Column';
 
 const Tasks = (props) => {
   return(
     <div className='all-tasks'>
-      <div className="todo-tasks three columns">
-        <h3>Todos Tasks</h3>
-        <ul>
-          {matchColumn(0,props).map((task, i) =>
-            <div className='single-task' key={i}>
-              <h5>{task.taskName}</h5>
-              <li>{task.description}</li>
-              <li>Assignee: {task.userName}</li>
-              <li>Complexity: {task.complexity}<img className="complexity-img" src="banana.png" alt="banana" /></li>
-              <button onClick={() => props.dispatch(updateStatus(task, -1))}> &#60; </button>
-              <button onClick={() => props.dispatch(updateStatus(task, 1))}> &#62;	</button>
-            </div>
-          )}
-        </ul>
-      </div>
-      <div className="completed-tasks three columns">
-        <h3>Completed Tasks</h3>
-          <ul>
-            {matchColumn(1,props).map((task, i) =>
-              <div className='single-task' key={i}>
-                <h5>{task.taskName}</h5>
-                <li>{task.description}</li>
-                <li>Assignee: {task.userName}</li>
-                <li>Complexity: {task.complexity}<img className="complexity-img" src="banana.png" alt="banana" /></li>
-                <button onClick={() => props.dispatch(updateStatus(task, -1))}> &#60; </button>
-                <button onClick={() => props.dispatch(updateStatus(task, 1))}> &#62;	</button>
-              </div>
-            )}
-          </ul>
-      </div>
-    <div className="todo-tasks three columns">
-      <h3>Column 3</h3>
-      <ul>
-        {matchColumn(2,props).map((task, i) =>
-          <div className='single-task' key={i}>
-            <h5>{task.taskName}</h5>
-            <li>{task.description}</li>
-            <li>Assignee: {task.userName}</li>
-            <li>Complexity: {task.complexity}<img className="complexity-img" src="banana.png" alt="banana" /></li>
-            <button onClick={() => props.dispatch(updateStatus(task, -1))}> &#60; </button>
-            <button onClick={() => props.dispatch(updateStatus(task, 1))}> &#62;	</button>
-          </div>
-        )}
-      </ul>
-    </div>
-    <div className="completed-tasks three columns">
-      <h3>Column 4</h3>
-        <ul>
-          {matchColumn(3,props).map((task, i) =>
-            <div className='single-task' key={i}>
-              <h5>{task.taskName}</h5>
-              <li>{task.description}</li>
-              <li>Assignee: {task.userName}</li>
-              <li>Complexity: {task.complexity}<img className="complexity-img" src="banana.png" alt="banana" /></li>
-              <button onClick={() => props.dispatch(updateStatus(task, -1))}> &#60; </button>
-              <button onClick={() => props.dispatch(updateStatus(task, 1))}> &#62;	</button>
-            </div>
-          )}
-        </ul>
-      </div>
+
+      <Column id="0" name="Todo" />
+      <Column id="1" name="In Progress" />
+      <Column id="2" name="Blocked" />
+      <Column id="3" name="Completed" />
     </div>
   )
 }
+
 
 function matchColumn(col,props) {
   return props.tasks.filter((task) => task.completionStatus == col)
@@ -86,3 +32,7 @@ const mapStateToProps = (state) => {
 export default connect(
   mapStateToProps
 )(Tasks)
+
+// <Link to={'/addTask'}>
+//   <button> Add task	</button>
+// </Link>
