@@ -11,7 +11,7 @@ const Column = (props) => {
 <div className="todo-tasks three columns">
   <h3>{props.name}</h3>
   <ul>
-    {matchColumn(props.id,props.tasks).map((task, i) =>
+    {matchColumn(props.columnValue,props.tasks).map((task, i) =>
       <div className='single-task' key={i}>
         <h5>{task.taskName}</h5>
         <li>{task.description}</li>
