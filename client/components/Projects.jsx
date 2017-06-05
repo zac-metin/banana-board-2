@@ -6,9 +6,9 @@ const Projects = (props) => {
   return(
 
     <div className='all-projects'>
-{props.projects.map((project,id) => <Link to={'/tasks'} className="project-name"> <div>hello</div>
+<ul>{props.projects.map((project,id) => <Link to={'/tasks'} className="project-name twelve columns"> <li>{" "+project.name+" "}</li>
 </Link>
-)}
+)}</ul>
     </div>
   )
 }
