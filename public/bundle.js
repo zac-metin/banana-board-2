@@ -8514,7 +8514,7 @@ module.exports = function(module) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.updateStatus = exports.getTasks = exports.receiveTasks = undefined;
+exports.addTask = exports.updateStatus = exports.getTasks = exports.receiveTasks = undefined;
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
@@ -8541,7 +8541,15 @@ var getTasks = exports.getTasks = function getTasks() {
 var updateStatus = exports.updateStatus = function updateStatus(task, increment) {
   var newTask = _extends({}, task, { completionStatus: task.completionStatus + increment });
   return function (dispatch) {
-    _superagent2.default.put('/api/tasks/' + task.id).send(newTask).end(function (err, res) {
+    _superagent2.default.put('/api/tasks/' + (ttask, ask.id)).send(newTask).end(function (err, res) {
+      if (!err) dispatch(getTasks());
+    });
+  };
+};
+
+var addTask = exports.addTask = function addTask(newTask) {
+  return function (dispatch) {
+    _superagent2.default.post('/api/tasks/').send(newTask).end(function (err, res) {
       if (!err) dispatch(getTasks());
     });
   };
@@ -14730,6 +14738,12 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRedux = __webpack_require__(28);
 
+var _actions = __webpack_require__(94);
+
+var actions = _interopRequireWildcard(_actions);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -14748,7 +14762,7 @@ var Form = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, (Form.__proto__ || Object.getPrototypeOf(Form)).call(this, props));
 
-    _this.state = { taskName: '', description: '', completionStatus: '', complexity: '', user_id: 0 };
+    _this.state = { taskName: '', description: '', completionStatus: '', complexity: '', userName: '' };
     return _this;
   }
 
@@ -14783,11 +14797,11 @@ var Form = function (_React$Component) {
         _react2.default.createElement('input', { type: 'text', name: 'complexity', value: this.state.complexity, onChange: this.handleChange.bind(this) }),
         _react2.default.createElement('br', null),
         _react2.default.createElement('label', { htmlFor: 'User ID' }),
-        _react2.default.createElement('input', { type: 'text', name: 'user_id', value: this.state.user_id, onChange: this.handleChange.bind(this) }),
+        _react2.default.createElement('input', { type: 'text', name: 'userName', value: this.state.userName, onChange: this.handleChange.bind(this) }),
         _react2.default.createElement(
           'button',
           { onClick: function onClick() {
-              return _this2.props.dispatch(getTasks(_this2.state));
+              return _this2.props.dispatch(actions.addTask(_this2.state));
             } },
           'Create Ticket'
         )
@@ -14970,7 +14984,6 @@ function tasks() {
   switch (action.type) {
     case 'RECEIVE_TASKS':
       return [].concat(_toConsumableArray(action.tasks));
-
     default:
       return state;
   }

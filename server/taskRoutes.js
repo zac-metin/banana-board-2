@@ -20,11 +20,11 @@ router.put('/:id', (req,res) => {
 })
 
 router.post('/', (req, res) => {
-  let db = req.app.get('db')
-  db.addUser(db, req.body)
-    .then(() => {
-      res.redirect('/')
-    })
+ let db = req.app.get('db')
+ tasksDB.addTask(db, req.body)
+   .then((task) => {
+     res.status(201).json(task[0])
+   })
 })
 
 

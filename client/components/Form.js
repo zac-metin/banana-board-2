@@ -1,10 +1,12 @@
 import React from 'react'
 import {connect} from 'react-redux'
 
+import * as actions from '../actions'
+
 class Form extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {taskName: '', description: '', completionStatus: '', complexity: '', user_id: 0}
+    this.state = {taskName: '', description: '', completionStatus: '', complexity: '', userName: ''}
   }
 
   handleChange(e) {
@@ -29,8 +31,8 @@ class Form extends React.Component {
         <br/><label htmlFor="Complexity Units"/>
         <input type="text" name="complexity" value={this.state.complexity} onChange={this.handleChange.bind(this)}/>
         <br/><label htmlFor="User ID"/>
-        <input type="text" name="user_id" value={this.state.user_id} onChange={this.handleChange.bind(this)}/>
-        <button onClick={() => this.props.dispatch(getTasks(this.state))}>Create Ticket</button>
+        <input type="text" name="userName" value={this.state.userName} onChange={this.handleChange.bind(this)}/>
+        <button onClick={() => this.props.dispatch(actions.addTask(this.state))}>Create Ticket</button>
       </div>
 
     )

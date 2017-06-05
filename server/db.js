@@ -29,6 +29,8 @@ const addTask = (db, task) => {
       taskName: task.taskName,
       description: task.description,
       completionStatus: 0,
+      complexity: task.complexity,
+      userName: task.userName
     })
 }
 
