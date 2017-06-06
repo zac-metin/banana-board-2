@@ -9,7 +9,7 @@ import {updateStatus } from '../actions'
 
 const Column = (props) => {
   return(
-<div className="todo-tasks three columns">
+<div className="tasklist three columns">
   <h3>{props.name}</h3>
   <ul>
     {matchColumn(props.columnValue,props.tasks).map((task, i) =>

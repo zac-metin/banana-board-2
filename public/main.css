@@ -1,10 +1,10 @@
 
 body {
-  font-family: 'Playfair Display';
+  font-family: 'Open Sans';
   margin: 0;
   text-align: center;
   padding: 0em 0em 0em 0em;
-  background: #d3ab55;
+  background: yellow;
 }
 
 h1 {
@@ -12,7 +12,10 @@ h1 {
 	font-size: 25px;
 	font-weight: 500;
 	line-height: 28px;
-
+}
+h3 {
+  font-family: 'Amatic SC';
+  color: yellow;
 }
 p {
 	color: #555;
@@ -46,10 +49,6 @@ li {
   margin: 0 auto;
 }
 
-.all-tasks {
-  margin-left: -4%;
-}
-
 .header {
   display: inline-block;
   background-color: black;
@@ -62,24 +61,23 @@ li {
   float: left;
 }
 
-.todo-tasks {
+.tasklist {
+  padding: 0% 1% 1% 1%;
+  background: url('http://www.technocrazed.com/wp-content/uploads/2015/12/Wood-Wallpaper-Background-22.jpg');
+  margin: 5px;
   border-radius: 4px;
-  padding-left: 4%;
-  /*border-right: 4px solid #333;*/
-}
-
-.completed-tasks {
-  border-left: 4px solid #333;
+  height: 600px;
 }
 
 .single-task {
-  background: #DFC183;
+  color: #DFC183;
+  background: black;
   /*border: 1px solid #555;*/
   border-radius: 7px;
-  margin-bottom: 20px;
   width: 80%;
-  margin: 0 auto 10px;
-  padding: 8px;
+  margin: 5px 5px 5px 5px;
+  padding: 1px 1px 1px 1px;
+  align: center;
 }
 
 .footer p {
@@ -112,7 +110,7 @@ button {
 }
 
 .userName {
-  border: 2px solid black;
+  border: 2px solid yellow;
   margin-left: 4vh;
   padding: 1.6vh;
   font-size: 3vh;

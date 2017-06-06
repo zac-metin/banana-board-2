@@ -14645,7 +14645,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var Column = function Column(props) {
   return _react2.default.createElement(
     'div',
-    { className: 'todo-tasks three columns' },
+    { className: 'tasklist three columns' },
     _react2.default.createElement(
       'h3',
       null,
