@@ -10,8 +10,3 @@ const Header = () => {
 }
 
 export default Header
-
-
-// <div className="add-task">
-//   <button>Add</button>
-// </div>

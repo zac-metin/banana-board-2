@@ -3,7 +3,19 @@ const getTasks = (db) => {
   return db('tasks')
     .select('*')
 }
+const getColumns = (db) => {
+  return db('projectColumns')
+    .select('*')
+}
+const getTasksByProjectId = (db,project_id) => {
+  return db('tasks')
+    .where('project_id', project_id)
+}
 
+const getColumnsByProjectId = (db, project_id) => {
+  return db('projectColumns')
+    .where('project_id', project_id)
+}
 
 const updateTask = (db, task) => {
   return db('tasks')
@@ -32,7 +44,7 @@ const addTask = (db, task) => {
       complexity: task.complexity,
       userName: task.userName
     })
-}
+  }
 
 const getProjects = (db) => {
   return db('projects')
@@ -69,5 +81,7 @@ module.exports = {
   addTask,
   getProjects,
   addProject,
-  editProject
+  editProject,
+  getTasksByProjectId,
+  getColumnsByProjectId
 }

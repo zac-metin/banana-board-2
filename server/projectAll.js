@@ -8,17 +8,6 @@ const get = (req, res) => {
     })
 }
 
-const getAll = (req, res) => {
-  let pid = req.params.project_id
-  let connection = req.app.get('connection')
-  tasksDB.getColumnsByProjectId(connection, pid)
-    .then(columns => {
-      tasksDB.getTasksByProjectId(connection, pid)
-      .then((tasks) =>  res.json({columns, tasks})
-)
-    })
-}
-
 const post = (req, res) => {
   let connection = req.app.get('connection')
   console.log(req.body);
@@ -43,5 +32,5 @@ const del = (req, res) => {
 
 
 module.exports = {
-  get, post, put, del, getAll
+  get, post, put, del
 }
