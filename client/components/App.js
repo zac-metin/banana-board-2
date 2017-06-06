@@ -28,7 +28,7 @@ class App extends React.Component {
        <div className='app-container'>
          <Header />
         <Route exact={true} path='/' component={Projects} />
-        <Route exact={true} path='/tasks' component={TasksContainer} />
+        <Route exact={true} path='/projects/:id/tasks' component={TasksContainer} />
         <Route exact={true} path='/addTask' component={Form} />
          <Footer />
        </div>

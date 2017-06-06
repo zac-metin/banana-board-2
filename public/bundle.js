@@ -5793,11 +5793,11 @@ if (process.env.NODE_ENV !== 'production' && typeof isCrushed.name === 'string' 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.getProjects = exports.receiveProjects = exports.addTask = exports.updateStatus = exports.getTasks = exports.receiveTasks = undefined;
+exports.getProjectsTasks = exports.receiveProjectsTasks = exports.getProjects = exports.receiveProjects = exports.addTask = exports.updateStatus = exports.getTasks = exports.receiveTasks = undefined;
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _superagent = __webpack_require__(426);
+var _superagent = __webpack_require__(428);
 
 var _superagent2 = _interopRequireDefault(_superagent);
 
@@ -5844,6 +5844,22 @@ var receiveProjects = exports.receiveProjects = function receiveProjects(project
 var getProjects = exports.getProjects = function getProjects() {
   return function (dispatch) {
     _superagent2.default.get('/api/projects').end(function (err, res) {
+      console.log(res.body);
+      if (!err) dispatch(receiveProjects(res.body));
+    });
+  };
+};
+
+var receiveProjectsTasks = exports.receiveProjectsTasks = function receiveProjectsTasks(projects) {
+  return {
+    type: 'RECEIVE_PROJECTS_TASKS',
+    projects: projects
+  };
+};
+
+var getProjectsTasks = exports.getProjectsTasks = function getProjectsTasks(project_id) {
+  return function (dispatch) {
+    _superagent2.default.get('/api/projects/' + project_id + '/tasks').end(function (err, res) {
       console.log(res.body);
       if (!err) dispatch(receiveProjects(res.body));
     });
@@ -5951,7 +5967,7 @@ exports.locationsAreEqual = exports.createLocation = undefined;
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _resolvePathname = __webpack_require__(425);
+var _resolvePathname = __webpack_require__(427);
 
 var _resolvePathname2 = _interopRequireDefault(_resolvePathname);
 
@@ -13840,7 +13856,7 @@ function compose() {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return ActionTypes; });
 /* harmony export (immutable) */ __webpack_exports__["a"] = createStore;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash_es_isPlainObject__ = __webpack_require__(103);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_symbol_observable__ = __webpack_require__(164);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_symbol_observable__ = __webpack_require__(163);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_symbol_observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_symbol_observable__);
 
 
@@ -14121,6 +14137,13 @@ function warning(message) {
 
 /***/ }),
 /* 163 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(425);
+
+
+/***/ }),
+/* 164 */
 /***/ (function(module, exports) {
 
 /**
@@ -14136,13 +14159,6 @@ function isObject(obj) {
 }
 
 module.exports = isObject;
-
-
-/***/ }),
-/* 164 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(429);
 
 
 /***/ }),
@@ -14227,7 +14243,7 @@ var App = function (_React$Component) {
           { className: 'app-container' },
           _react2.default.createElement(_Header2.default, null),
           _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _Projects2.default }),
-          _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/tasks', component: _TasksContainer2.default }),
+          _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/projects/:id/tasks', component: _TasksContainer2.default }),
           _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/addTask', component: _Form2.default }),
           _react2.default.createElement(_Footer2.default, null)
         )
@@ -14718,9 +14734,7 @@ function matchColumn(col, tasks) {
 }
 
 var mapStateToProps = function mapStateToProps(state) {
-  return {
-    tasks: state.tasks
-  };
+  return { tasks: state.tasks };
 };
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps)(Column);
@@ -14933,8 +14947,7 @@ var Projects = function Projects(props) {
       props.projects.map(function (project, id) {
         return _react2.default.createElement(
           _reactRouterDom.Link,
-          { to: '/tasks', className: 'project-name twelve columns' },
-          ' ',
+          { to: '/projects/' + project.id + '/tasks', className: 'project-name twelve columns' },
           _react2.default.createElement(
             'li',
             null,
@@ -14947,9 +14960,7 @@ var Projects = function Projects(props) {
 };
 
 var mapStateToProps = function mapStateToProps(state) {
-  return {
-    projects: state.projects
-  };
+  return { projects: state.projects };
 };
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps)(Projects);
@@ -14964,6 +14975,8 @@ exports.default = (0, _reactRedux.connect)(mapStateToProps)(Projects);
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _reactRedux = __webpack_require__(24);
 
@@ -14985,22 +14998,69 @@ var _Column2 = _interopRequireDefault(_Column);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var Tasks = function Tasks(props) {
-  return _react2.default.createElement(
-    'div',
-    { className: 'all-tasks' },
-    columns.map(function (column) {
-      return _react2.default.createElement(_Column2.default, { columnValue: column.column_value, name: column.name });
-    })
-  );
-};
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var columns = [{ column_value: 0, name: 'Todo' }, { column_value: 1, name: 'In Progress' }, { column_value: 2, name: 'Blocked' }, { column_value: 3, name: 'Completed' }];
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Tasks = function (_React$Component) {
+  _inherits(Tasks, _React$Component);
+
+  function Tasks(props) {
+    _classCallCheck(this, Tasks);
+
+    var _this = _possibleConstructorReturn(this, (Tasks.__proto__ || Object.getPrototypeOf(Tasks)).call(this, props));
+
+    _this.state = {
+      tasks: props.tasks
+    };
+    return _this;
+  }
+
+  _createClass(Tasks, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      console.log("memes");
+      //api request for project columns and tasks (both by math.params.id)
+    }
+  }, {
+    key: 'componentWillReceiveProps',
+    value: function componentWillReceiveProps(props) {
+      this.setState({ tasks: props.tasks });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        { className: 'all-tasks' },
+        columns.map(function (column) {
+          return _react2.default.createElement(_Column2.default, { columnValue: column.column_value, name: column.name });
+        })
+      );
+    }
+  }]);
+
+  return Tasks;
+}(_react2.default.Component);
+
+var columns = [{
+  column_value: 0,
+  name: 'Todo'
+}, {
+  column_value: 1,
+  name: 'In Progress'
+}, {
+  column_value: 2,
+  name: 'Blocked'
+}, {
+  column_value: 3,
+  name: 'Completed'
+}];
 
 var mapStateToProps = function mapStateToProps(state) {
-  return {
-    tasks: state.tasks
-  };
+  return { tasks: state.tasks };
 };
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps)(Tasks
@@ -36160,7 +36220,7 @@ var _isPlainObject = __webpack_require__(17);
 
 var _isPlainObject2 = _interopRequireDefault(_isPlainObject);
 
-var _symbolObservable = __webpack_require__(164);
+var _symbolObservable = __webpack_require__(163);
 
 var _symbolObservable2 = _interopRequireDefault(_symbolObservable);
 
@@ -36417,6 +36477,71 @@ function createStore(reducer, preloadedState, enhancer) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+/* WEBPACK VAR INJECTION */(function(global, module) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _ponyfill = __webpack_require__(426);
+
+var _ponyfill2 = _interopRequireDefault(_ponyfill);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var root; /* global window */
+
+
+if (typeof self !== 'undefined') {
+  root = self;
+} else if (typeof window !== 'undefined') {
+  root = window;
+} else if (typeof global !== 'undefined') {
+  root = global;
+} else if (true) {
+  root = module;
+} else {
+  root = Function('return this')();
+}
+
+var result = (0, _ponyfill2['default'])(root);
+exports['default'] = result;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(57), __webpack_require__(94)(module)))
+
+/***/ }),
+/* 426 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports['default'] = symbolObservablePonyfill;
+function symbolObservablePonyfill(root) {
+	var result;
+	var _Symbol = root.Symbol;
+
+	if (typeof _Symbol === 'function') {
+		if (_Symbol.observable) {
+			result = _Symbol.observable;
+		} else {
+			result = _Symbol('observable');
+			_Symbol.observable = result;
+		}
+	} else {
+		result = '@@observable';
+	}
+
+	return result;
+};
+
+/***/ }),
+/* 427 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
 
 
 var isAbsolute = function isAbsolute(pathname) {
@@ -36489,7 +36614,7 @@ var resolvePathname = function resolvePathname(to) {
 module.exports = resolvePathname;
 
 /***/ }),
-/* 426 */
+/* 428 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -36507,8 +36632,8 @@ if (typeof window !== 'undefined') { // Browser window
 }
 
 var Emitter = __webpack_require__(180);
-var requestBase = __webpack_require__(427);
-var isObject = __webpack_require__(163);
+var requestBase = __webpack_require__(429);
+var isObject = __webpack_require__(164);
 
 /**
  * Noop.
@@ -36520,7 +36645,7 @@ function noop(){};
  * Expose `request`.
  */
 
-var request = module.exports = __webpack_require__(428).bind(null, Request);
+var request = module.exports = __webpack_require__(430).bind(null, Request);
 
 /**
  * Determine XHR.
@@ -37471,13 +37596,13 @@ request.put = function(url, data, fn){
 
 
 /***/ }),
-/* 427 */
+/* 429 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
  * Module of mixed-in functions shared between node and client code
  */
-var isObject = __webpack_require__(163);
+var isObject = __webpack_require__(164);
 
 /**
  * Clear previous timeout.
@@ -37849,7 +37974,7 @@ exports.send = function(data){
 
 
 /***/ }),
-/* 428 */
+/* 430 */
 /***/ (function(module, exports) {
 
 // The node and browser modules expose versions of this with the
@@ -37885,71 +38010,6 @@ function request(RequestConstructor, method, url) {
 
 module.exports = request;
 
-
-/***/ }),
-/* 429 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(global, module) {
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _ponyfill = __webpack_require__(430);
-
-var _ponyfill2 = _interopRequireDefault(_ponyfill);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-var root; /* global window */
-
-
-if (typeof self !== 'undefined') {
-  root = self;
-} else if (typeof window !== 'undefined') {
-  root = window;
-} else if (typeof global !== 'undefined') {
-  root = global;
-} else if (true) {
-  root = module;
-} else {
-  root = Function('return this')();
-}
-
-var result = (0, _ponyfill2['default'])(root);
-exports['default'] = result;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(57), __webpack_require__(94)(module)))
-
-/***/ }),
-/* 430 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-exports['default'] = symbolObservablePonyfill;
-function symbolObservablePonyfill(root) {
-	var result;
-	var _Symbol = root.Symbol;
-
-	if (typeof _Symbol === 'function') {
-		if (_Symbol.observable) {
-			result = _Symbol.observable;
-		} else {
-			result = _Symbol('observable');
-			_Symbol.observable = result;
-		}
-	} else {
-		result = '@@observable';
-	}
-
-	return result;
-};
 
 /***/ }),
 /* 431 */

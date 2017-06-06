@@ -47,11 +47,27 @@ const addProject = (project, db) => {
     })
 }
 
+const editProject = (project, db) => {
+  return db('projects')
+    .where('id', project.id)
+    .update({
+      name: project.name,
+    })
+}
+
+const delProject = (project_id, db) => {
+  return db('projects')
+    .where('id', project.id)
+    .update({
+      name: project.name,
+    })
+}
 
 module.exports = {
   getTasks,
   updateTask,
   addTask,
   getProjects,
-  addProject
+  addProject,
+  editProject
 }
