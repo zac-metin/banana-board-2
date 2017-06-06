@@ -9,7 +9,7 @@ const Projects = (props) => {
 </Link>
 )}</ul>
     </div>
-  )
+  ) 
 }
 
 

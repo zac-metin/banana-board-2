@@ -1,5 +1,6 @@
 import request from 'superagent'
 
+
 export const receiveTasks = (tasks) => {
   return {
     type: 'RECEIVE_TASKS',
@@ -53,6 +54,25 @@ export const getProjects = () => {
   return (dispatch) => {
     request
       .get('/api/projects')
+      .end((err, res) => {
+        console.log(res.body);
+        if (!err) dispatch(receiveProjects(res.body))
+      })
+  }
+}
+
+
+export const receiveProjectsTasks = (projects) => {
+  return {
+    type: 'RECEIVE_PROJECTS_TASKS',
+    projects
+  }
+}
+
+export const getProjectsTasks = (project_id) => {
+  return (dispatch) => {
+    request
+      .get(`/api/projects/${project_id}/tasks`)
       .end((err, res) => {
         console.log(res.body);
         if (!err) dispatch(receiveProjects(res.body))
