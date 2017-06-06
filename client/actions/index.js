@@ -16,12 +16,11 @@ export const getTasks = () => {
   }
 }
 
-
 export const updateStatus = (task, increment) => {
-  let newTask = {...task, completionStatus:task.completionStatus+increment}
+  let newTask = {...task, completionStatus: task.completionStatus + increment}
   return (dispatch) => {
     request
-      .put(`/api/tasks/${task, task.id}`)
+      .put(`/api/tasks/${task,task.id}`)
       .send(newTask)
       .end((err, res) => {
         if (!err) dispatch(getTasks())
@@ -30,7 +29,6 @@ export const updateStatus = (task, increment) => {
 }
 
 export const addTask = (newTask) => {
-  console.log(newTask);
   return (dispatch) => {
     request
       .post('/api/tasks/')
@@ -41,7 +39,22 @@ export const addTask = (newTask) => {
   }
 }
 
+export const removeTask = (taskId) => {
+  return {
+    type: 'REMOVE_TASK',
+    taskId
+  }
+}
 
+export const delTask = (task) => {
+  return (dispatch) => {
+    request
+    .del(`/api/task/${task.id}`)
+    .end((err, res) => {
+      if (!err) dispatch(removeTask(task.id))
+    })
+  }
+}
 
 export const receiveProjects = (projects) => {
   return {
@@ -54,7 +67,6 @@ export const getProjects = () => {
     request
       .get('/api/projects')
       .end((err, res) => {
-        console.log(res.body);
         if (!err) dispatch(receiveProjects(res.body))
       })
   }

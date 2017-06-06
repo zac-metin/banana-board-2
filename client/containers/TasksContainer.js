@@ -28,7 +28,3 @@ const mapStateToProps = (state) => {
 export default connect(
   mapStateToProps
 )(Tasks)
-
-// <Link to={'/addTask'}>
-//   <button> Add task	</button>
-// </Link>

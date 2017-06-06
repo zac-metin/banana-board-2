@@ -5793,7 +5793,7 @@ if (process.env.NODE_ENV !== 'production' && typeof isCrushed.name === 'string' 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.getProjects = exports.receiveProjects = exports.addTask = exports.updateStatus = exports.getTasks = exports.receiveTasks = undefined;
+exports.getProjects = exports.receiveProjects = exports.delTask = exports.removeTask = exports.addTask = exports.updateStatus = exports.getTasks = exports.receiveTasks = undefined;
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
@@ -5827,10 +5827,24 @@ var updateStatus = exports.updateStatus = function updateStatus(task, increment)
 };
 
 var addTask = exports.addTask = function addTask(newTask) {
-  console.log(newTask);
   return function (dispatch) {
     _superagent2.default.post('/api/tasks/').send(newTask).end(function (err, res) {
       if (!err) dispatch(getTasks());
+    });
+  };
+};
+
+var removeTask = exports.removeTask = function removeTask(taskId) {
+  return {
+    type: 'REMOVE_TASK',
+    taskId: taskId
+  };
+};
+
+var delTask = exports.delTask = function delTask(task) {
+  return function (dispatch) {
+    _superagent2.default.del('/api/task/' + task.id).end(function (err, res) {
+      if (!err) dispatch(removeTask(task.id));
     });
   };
 };
@@ -5844,7 +5858,6 @@ var receiveProjects = exports.receiveProjects = function receiveProjects(project
 var getProjects = exports.getProjects = function getProjects() {
   return function (dispatch) {
     _superagent2.default.get('/api/projects').end(function (err, res) {
-      console.log(res.body);
       if (!err) dispatch(receiveProjects(res.body));
     });
   };
@@ -14898,10 +14911,6 @@ var Header = function Header() {
 
 exports.default = Header;
 
-// <div className="add-task">
-//   <button>Add</button>
-// </div>
-
 /***/ }),
 /* 175 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -15003,12 +15012,7 @@ var mapStateToProps = function mapStateToProps(state) {
   };
 };
 
-exports.default = (0, _reactRedux.connect)(mapStateToProps)(Tasks
-
-// <Link to={'/addTask'}>
-//   <button> Add task	</button>
-// </Link>
-);
+exports.default = (0, _reactRedux.connect)(mapStateToProps)(Tasks);
 
 /***/ }),
 /* 177 */
@@ -15105,6 +15109,12 @@ function tasks() {
   switch (action.type) {
     case 'RECEIVE_TASKS':
       return [].concat(_toConsumableArray(action.tasks));
+
+    case 'REMOVE_TASK':
+      return state.tasks.filter(function (task) {
+        return task.id !== action.taskId;
+      });
+
     default:
       return state;
   }
