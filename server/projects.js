@@ -27,7 +27,7 @@ const post = (req, res) => {
     tasksDB.addProjectColumns(project_id, req.body.columns, connection)
   })
     .then((columns) => {
-      res.status(201).json(columns[0])
+      res.status(201)
     })
 }
 

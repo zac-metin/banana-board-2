@@ -8,8 +8,8 @@ var db = require('../../server/db')
 var app = require('../../server/server')
 var configureDatabase = require('./helpers/database-config')
 
-
 configureDatabase(test, app)
+
 test.cb('able to get all tasks', function (t) {
   var expected = 6
   request(t.context.app)
@@ -38,11 +38,10 @@ test.cb('able to get all projects', function (t) {
 })
 
 test('POST /projects', (t) => {
+  console.log("attempting post test");
   return request(t.context.app)
     .post('/api/projects')
-    .send({
-      name: 'bob'
-    })
+    .send({ project: {name: 'Fun Day At The Pool'}, columns: [ {column_name: 'Todo', column_value: 0}, {column_name: 'In Prolapse', column_value: 1}] })
     .expect(201)
     .then(() => {
       return db.getProjects(t.context.connection)

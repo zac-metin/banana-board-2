@@ -35,3 +35,21 @@ test('addProject adds a single project', function(t) {
       t.is(projects.length, 3)
     })
 })
+
+test('addProjectColumns adds a single project column, or more', function(t) {
+  return db.addProjectColumns(2, [{
+      column_name: "Hi I am a column",
+      column_value: 3,
+    },
+    {
+        column_name: "Intestinal Prolapse",
+        column_value: 3,
+      }
+  ], t.context.connection)
+    .then((res) => {
+      return t.context.connection('projectColumns').select()
+    })
+    .then((columns) => {
+      t.is(columns.length, 8)
+    })
+})
