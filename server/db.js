@@ -16,7 +16,6 @@ const getColumnsByProjectId = (db, project_id) => {
   return db('projectColumns')
     .where('project_id', project_id)
 }
-
 const updateTask = (db, task) => {
   return db('tasks')
   .where('id', task.id)
@@ -51,11 +50,18 @@ const getProjects = (db) => {
     .select('*')
 }
 
-
 const addProject = (project, db) => {
   return db('projects')
   .insert({
       name: project.name,
+    })
+}
+const addProjectColumns = (project_id, columns, db) => {
+  return db('projectColumns')
+  .insert({
+      project_id: project_id,
+      column_name: columns.column_name,
+      column_value: columns.column_value,
     })
 }
 
@@ -83,5 +89,6 @@ module.exports = {
   addProject,
   editProject,
   getTasksByProjectId,
-  getColumnsByProjectId
+  getColumnsByProjectId,
+  addProjectColumns
 }

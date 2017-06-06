@@ -22,9 +22,12 @@ const getAll = (req, res) => {
 const post = (req, res) => {
   let connection = req.app.get('connection')
   console.log(req.body);
-  tasksDB.addProject(req.body,connection)
-    .then((project) => {
-      res.status(201).json(project[0])
+  tasksDB.addProject(req.body.project,connection)
+  .then((project_id) => {
+    tasksDB.addProjectColumns(project_id, req.body.columns, connection)
+  })
+    .then((columns) => {
+      res.status(201).json(columns[0])
     })
 }
 
