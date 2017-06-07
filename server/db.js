@@ -50,16 +50,19 @@ const getProjects = (db) => {
     .select('*')
 }
 
-const addProject = (project, db) => {
+const addProject = (project_name, db) => {
+  console.log(project_name);
   return db('projects')
   .insert({
-      name: project.name,
+      name: project_name,
     })
 }
 const addProjectColumns = (project_id, columns, db) => {
-  columns.forEach(column => column.project_id = project_id)
+
+  const columnsToInsert = columns.map(column => ({...column, project_id}))
+    console.log(columnsToInsert);
   return db('projectColumns')
-  .insert(columns)
+  .insert(columnsToInsert)
 }
 
 const editProject = (project, db) => {
