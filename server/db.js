@@ -50,7 +50,6 @@ const getProjects = (db) => {
 }
 
 const addProject = (project_name, db) => {
-  console.log(project_name);
   return db('projects')
   .insert({
       name: project_name,
@@ -59,7 +58,6 @@ const addProject = (project_name, db) => {
 const addProjectColumns = (project_id, columns, db) => {
 
   const columnsToInsert = columns.map(column => Object.assign({},column,{project_id}))
-    console.log(columnsToInsert);
   return db('projectColumns')
   .insert(columnsToInsert)
 }

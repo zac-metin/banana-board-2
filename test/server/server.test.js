@@ -24,14 +24,6 @@ test.cb('able to get all tasks', function(t) {
 })
 
 
-test.cb('able to get a
-        .end((err, res) => {
-            if (err) throw err
-            t.is(res.body.length, expected)
-            t.end()
-        })
-})
-
 var stuff = {
     project_name: 'Fun Day At The Pool',
     columns: [{
@@ -43,21 +35,14 @@ var stuff = {
     }]
 }
 
-var stuffString = JSON.stringify(stuff)
-
 test.cb('POST /projects', (t) => {
-    console.log("attempting post test");
     request(t.context.app)
         .post('/api/projects')
-        .send({
-            projectString: stuffString
-        })
+        .send(stuff)
         .expect(201)
         .end((err) => {
-            console.log('log everywhere');
             db.getProjects(t.context.connection)
                 .then((projects) => {
-                    console.log('hello', projects);
                     t.is(projects.length, 3)
                     t.end()
                 })

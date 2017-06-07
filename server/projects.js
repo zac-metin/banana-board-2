@@ -20,12 +20,10 @@ const getAll = (req, res) => {
 }
 
 const post = (req, res) => {
-  const newBody = JSON.parse(req.body.projectString)
   let connection = req.app.get('connection')
-  console.log(newBody);
-  tasksDB.addProject(newBody.project_name,connection)
+  tasksDB.addProject(req.body.project_name,connection)
   .then((project_ids) => {
-    return tasksDB.addProjectColumns(project_ids[0], newBody.columns, connection)
+    return tasksDB.addProjectColumns(project_ids[0], req.body.columns, connection)
   })
     .then((columns) => {
       console.log('hello');
