@@ -24,7 +24,7 @@ export const updateStatus = (task, increment) => {
       .put(`/api/tasks/${task,task.id}`)
       .send(newTask)
       .end((err, res) => {
-        if (!err) dispatch(getTasks())
+        if (!err) dispatch(getProjectInfo(task.project_id))
       })
   }
 }

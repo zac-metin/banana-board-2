@@ -39,7 +39,7 @@ function matchColumn(col, tasks) {
 }
 
 const mapStateToProps = (state) => {
-  return {tasks: state.projectInfo.tasks, projectInfo: state.projectInfo}
+  return {tasks: state.projectInfo.tasks}
 }
 
 export default connect(mapStateToProps)(Column)
