@@ -9,6 +9,7 @@ import TasksContainer from '../containers/TasksContainer'
 import Header from './Header'
 import Footer from './Footer'
 import Form from './Form'
+import ProjectForm from './ProjectForm'
 import Projects from './Projects'
 
 class App extends React.Component {
@@ -28,9 +29,10 @@ class App extends React.Component {
        <div className='app-container'>
          <Header />
         <Route exact={true} path='/' component={Projects} />
-        <Route exact={true} path='/projects/:id/tasks' component={TasksContainer} />
+        <Route exact={true} path='/projects/:id' component={TasksContainer} />
         <Route exact={true} path='/addTask' component={Form} />
-         <Footer />
+        <Route exact={true} path='/addProject' component={ProjectForm} />
+        <Footer />
        </div>
         </Router>
 

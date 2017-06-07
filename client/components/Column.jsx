@@ -7,6 +7,7 @@ import HTML5Backend from 'react-dnd-html5-backend';
 import {updateStatus} from '../actions'
 
 const Column = (props) => {
+    //  console.log(props.projectInfo);
   return (
     <div className="tasklist three columns">
       <h3>{props.name}</h3>
@@ -38,7 +39,7 @@ function matchColumn(col, tasks) {
 }
 
 const mapStateToProps = (state) => {
-  return {tasks: state.tasks}
+  return {tasks: state.projectInfo.tasks, projectInfo: state.projectInfo}
 }
 
 export default connect(mapStateToProps)(Column)

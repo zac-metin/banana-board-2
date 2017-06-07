@@ -24,12 +24,7 @@ test.cb('able to get all tasks', function(t) {
 })
 
 
-test.cb('able to get all projects', function(t) {
-    var expected = 2
-    request(t.context.app)
-        .get('/api/projects')
-        .expect('Content-Type', /json/)
-        .expect(200)
+test.cb('able to get a
         .end((err, res) => {
             if (err) throw err
             t.is(res.body.length, expected)
@@ -50,7 +45,7 @@ var stuff = {
 
 var stuffString = JSON.stringify(stuff)
 
-test.only.cb('POST /projects', (t) => {
+test.cb('POST /projects', (t) => {
     console.log("attempting post test");
     request(t.context.app)
         .post('/api/projects')

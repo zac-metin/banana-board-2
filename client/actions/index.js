@@ -86,8 +86,24 @@ export const getProjectsTasks = (project_id) => {
     request
       .get(`/api/projects/${project_id}/tasks`)
       .end((err, res) => {
-        console.log(res.body);
         if (!err) dispatch(receiveProjects(res.body))
+      })
+  }
+}
+
+
+export const receiveProjectInfo = (projectInfo) => {
+  return {
+    type: 'RECEIVE_PROJECT_INFO',
+    projectInfo
+  }
+}
+export const getProjectInfo = (project_id) => {
+  return (dispatch) => {
+    request
+      .get(`/api/projects/${project_id}`)
+      .end((err, res) => {
+        if (!err) dispatch(receiveProjectInfo(res.body))
       })
   }
 }

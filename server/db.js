@@ -1,4 +1,3 @@
-
 const getTasks = (db) => {
   return db('tasks')
     .select('*')
@@ -59,7 +58,7 @@ const addProject = (project_name, db) => {
 }
 const addProjectColumns = (project_id, columns, db) => {
 
-  const columnsToInsert = columns.map(column => ({...column, project_id}))
+  const columnsToInsert = columns.map(column => Object.assign({},column,{project_id}))
     console.log(columnsToInsert);
   return db('projectColumns')
   .insert(columnsToInsert)
