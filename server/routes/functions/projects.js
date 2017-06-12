@@ -1,4 +1,4 @@
-const tasksDB = require('./db')
+const tasksDB = require('../../db')
 
 const get = (req, res) => {
   let connection = req.app.get('connection')
