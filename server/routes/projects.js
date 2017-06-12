@@ -1,9 +1,9 @@
 var express = require('express')
 var router = express.Router()
 
-var tasksDB = require('./db')
+var tasksDB = require('../db')
 
-let {get, post, put, del, getAll} = require('./projects')
+let {get, post, put, del, getAll} = require('./functions/projects')
 
 router.route('/')
   .get(get)

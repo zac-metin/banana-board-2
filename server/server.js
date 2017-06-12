@@ -3,8 +3,8 @@ var express = require('express')
 var bodyParser = require('body-parser')
 const cors = require('cors')
 
-var taskRoutes = require('./taskRoutes')
-var projectRoutes = require('./projectRoutes')
+var tasks = require('./routes/tasks')
+var projectRoutes = require('./routes/projects')
 
 
 const corsOptions = {
