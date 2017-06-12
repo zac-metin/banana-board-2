@@ -1,22 +1,27 @@
 import request from 'superagent'
 
-export const editColumn = (task) => {
+export const editColumn = (oldName, newName) => {
   return {
     type: 'EDIT_COLUMN',
-    task
+    oldName,
+    newName
   }
 }
 
-export const updateColumn = (task) => {
+export const updateColumn = (oldName, newName) => {
   return (dispatch) => {
-    console.log({task});
+    console.log('actions', {oldName, newName});
     request
       .post('/api/projectcolumns')
-      .send(task)
+      .send({oldName, newName})
       .end((err, res) => {
-        if (err) console.log(err);
-        else console.log({res: res.body});
+        if (err) {
+          console.log(err)
+        }
+        else {
+          console.log(res+"is this empty??");
         dispatch(editColumn(res.body))
+      }
       })
   }
 }

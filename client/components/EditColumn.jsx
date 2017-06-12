@@ -2,7 +2,7 @@ import {connect} from 'react-redux'
 import React from 'react'
 import {Link} from 'react-router-dom'
 
-import {updateStatus} from '../actions'
+import {updateColumn} from '../actions/editcolumn'
 
 class EditColumn extends React.Component {
   constructor(props) {
@@ -21,7 +21,7 @@ class EditColumn extends React.Component {
   submitChanges(e) {
     e.preventDefault()
     let key = Object.keys(this.state.newColNames)
-    this.props.dispatch(updateColumns(key[0],this.state.newColNames[key[0]]))
+    this.props.dispatch(updateColumn(key[0],this.state.newColNames[key[0]]))
   }
 
   render() {
@@ -44,13 +44,6 @@ class EditColumn extends React.Component {
           <li>
             <span className="description">{task.description}</span>
           </li>
-          <li>
-            <div className="flexrow">
-              <div className="leftarrow" onClick={() => props.dispatch(updateStatus(task, -1))}>🡰</div>
-              {task.complexity}<img className="complexity-img" src="banana.png" alt="banana"></img>
-            <div className="rightarrow" onClick={() => props.dispatch(updateStatus(task, 1))}>🡲</div>
-          </div>
-        </li>
       </div>)}
     </ul>
   </div>

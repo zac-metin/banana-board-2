@@ -78,6 +78,7 @@ const delProject = (project_id, db) => {
 }
 
 const editColumn = (oldName, newName, db) => {
+  console.log(oldName, newName);
   return db('projectColumns')
   .where('column_name', oldName)
   .update({

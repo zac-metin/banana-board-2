@@ -5,7 +5,10 @@ function projectInfo(state = {columns:[]}, action) {
      return {...action.projectInfo}
 
      case 'EDIT_COLUMN':
-     return task
+     let newState = {...state}
+     newState.column = action.column
+     return newState
+
 
     default: return state
 

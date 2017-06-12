@@ -5,6 +5,7 @@ const cors = require('cors')
 
 var tasks = require('./routes/tasks')
 var projects = require('./routes/projects')
+var projectcolumns = require('./routes/projectcolumns')
 
 
 const corsOptions = {
