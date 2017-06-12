@@ -3,8 +3,8 @@ var express = require('express')
 var bodyParser = require('body-parser')
 const cors = require('cors')
 
-var taskRoutes = require('./taskRoutes')
-var projectRoutes = require('./projectRoutes')
+var tasks = require('./routes/tasks')
+var projects = require('./routes/projects')
 
 
 const corsOptions = {
@@ -21,8 +21,8 @@ server.use(cors(corsOptions))
 server.use(bodyParser.json())
 server.use(express.static(path.join(__dirname, '../public')))
 
-server.use('/api/tasks', taskRoutes)
-server.use('/api/projects', projectRoutes)
+server.use('/api/tasks', tasks)
+server.use('/api/projects', projects)
 
 module.exports = (db) => {
   server.set('connection', db)

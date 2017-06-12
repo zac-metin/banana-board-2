@@ -1,7 +1,7 @@
 var express = require('express')
 var router = express.Router()
 
-var tasksDB = require('./db')
+var tasksDB = require('../db')
 
 router.get('/', (req, res) => {
   let connection = req.app.get('connection')
@@ -27,6 +27,5 @@ router.post('/', (req, res) => {
      res.status(201).json(task_id[0])
    })
 })
-
 
 module.exports = router

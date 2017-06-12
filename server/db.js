@@ -15,6 +15,7 @@ const getColumnsByProjectId = (db, project_id) => {
   return db('projectColumns')
     .where('project_id', project_id)
 }
+
 const updateTask = (db, task) => {
   return db('tasks')
   .where('id', task.id)
