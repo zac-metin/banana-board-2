@@ -23,6 +23,7 @@ server.use(express.static(path.join(__dirname, '../public')))
 
 server.use('/api/tasks', tasks)
 server.use('/api/projects', projects)
+server.use('/api/projectcolumns', projectcolumns)
 
 module.exports = (db) => {
   server.set('connection', db)

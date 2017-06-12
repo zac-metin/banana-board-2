@@ -67,16 +67,22 @@ const editProject = (project, db) => {
   return db('projects')
     .where('id', project.id)
     .update({
-      name: project.name,
+      name: project.name
     })
 }
 
 const delProject = (project_id, db) => {
   return db('projects')
     .where('id', project.id)
-    .update({
-      name: project.name,
-    })
+    .del()
+}
+
+const editColumn = (oldName, newName, db) => {
+  return db('projectColumns')
+  .where('column_name', oldName)
+  .update({
+    column_name: newName
+  })
 }
 
 module.exports = {
@@ -88,5 +94,6 @@ module.exports = {
   editProject,
   getTasksByProjectId,
   getColumnsByProjectId,
-  addProjectColumns
+  addProjectColumns,
+  editColumn
 }

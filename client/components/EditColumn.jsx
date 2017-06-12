@@ -20,8 +20,8 @@ class EditColumn extends React.Component {
   }
   submitChanges(e) {
     e.preventDefault()
-    console.log("submitting changes", this.state.newColNames);
-    // this.props.dispatch(updateColumns(this.state.newColNames))
+    let key = Object.keys(this.state.newColNames)
+    this.props.dispatch(updateColumns(key[0],this.state.newColNames[key[0]]))
   }
 
   render() {

@@ -4,7 +4,11 @@ function projectInfo(state = {columns:[]}, action) {
      case 'RECEIVE_PROJECT_INFO':
      return {...action.projectInfo}
 
+     case 'EDIT_COLUMN':
+     return task
+
     default: return state
+
   }
 }
 
