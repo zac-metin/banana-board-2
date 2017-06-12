@@ -5,6 +5,7 @@ import {DragDropContext} from 'react-dnd'
 import HTML5Backend from 'react-dnd-html5-backend';
 
 import {updateStatus} from '../actions'
+import Task from './Task'
 
 const Column = (props) => {
     //  console.log(props.projectInfo);
@@ -12,23 +13,11 @@ const Column = (props) => {
     <div className="tasklist three columns">
       <h3>{props.name}</h3>
       <ul>
-        {matchColumn(props.columnValue, props.tasks).map((task, i) => <div className='single-task' key={i}>
-          <li>
-            <h5>{task.taskName}
-              <span className="userName">{task.userName}</span>
-            </h5>
-          </li>
-          <li>
-            <span className="description">{task.description}</span>
-          </li>
-          <li>
-            <div className="flexrow">
-              <div className="leftarrow" onClick={() => props.dispatch(updateStatus(task, -1))}>🡰</div>
-              {task.complexity}<img className="complexity-img" src="banana.png" alt="banana"></img>
-              <div className="rightarrow" onClick={() => props.dispatch(updateStatus(task, 1))}>🡲</div>
-            </div>
-          </li>
-        </div>)}
+
+        {matchColumn(props.columnValue, props.tasks).map((task, i) =>
+          <Task task={task} key={i} selected={task.id == props.selectedTask}/>
+        )}
+
       </ul>
     </div>
   )
@@ -39,7 +28,10 @@ function matchColumn(col, tasks) {
 }
 
 const mapStateToProps = (state) => {
-  return {tasks: state.projectInfo.tasks}
+  return {
+    tasks: state.projectInfo.tasks,
+    selectedTask: state.selectedTask
+  }
 }
 
 export default connect(mapStateToProps)(Column)
