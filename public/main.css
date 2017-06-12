@@ -153,3 +153,17 @@ a:hover {
 	color: #444444;
 	border-bottom: 1px solid #d3ab55;
 }
+.inputcolname {
+  color: black;
+  width: 70%;
+}
+.savebtn {
+  width: 20%;
+  color: white;
+  font-size: 22px;
+  margin-left; 10px;
+}
+
+.tasklist{
+  text-decoration: none;
+}
