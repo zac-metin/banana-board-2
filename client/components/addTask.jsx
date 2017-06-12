@@ -37,7 +37,7 @@ class AddTask extends React.Component {
   }
   render() {
     return (
-      <div className="AddTaskForm">
+      <form className="AddTaskForm" onSubmit={(e) => this.submitTask(e)}>
         <label>Task Name
           <input name="taskName" onChange={(e) => this.inputTaskDetails(e)}></input>
         </label>
@@ -51,8 +51,8 @@ class AddTask extends React.Component {
           <input name="userName" onChange={(e) => this.inputTaskDetails(e)}></input>
         </label>
         {this.renderColumnOptions(this.state.columns)}
-        <button onClick={(e) => this.submitTask(e)}>Deploy Task</button>
-      </div>
+        <input type="submit" value="Birth Task"/>
+      </form>
     )
   }
 }
