@@ -34,11 +34,15 @@ class ColumnHeader extends React.Component {
   renderColumnName() {
     return <h3 className="columnName" onClick={() => this.toggleEdit(true)}>{this.state.name}</h3>
   }
+  renderSubmitButton() {
+    return <button type="submit" className="savebtn greenbtn" onClick={(e) => this.submitEdit(e)}>&#10004;</button>;
+
+  }
   renderEditColumnName() {
     return <form>
       <input type="text" name="newName" className="inputcolname" defaultValue={this.state.newName} onChange={(e) => this.updateNameDetails(e.target.value)} />
-      <button className="savebtn" onClick={(e) => this.submitEdit(e)}>Save</button>
-      <button className="savebtn" onClick={() => this.toggleEdit(false)}>Cancel</button>
+      {this.state.newName.length <= 20 && this.renderSubmitButton()}
+      <button className="savebtn redbtn" onClick={() => this.toggleEdit(false)}>&#10007;</button>
     </form>
   }
   render() {

@@ -9,13 +9,11 @@ import {updateStatus} from '../actions'
 import Task from './Task'
 
 const Column = (props) => {
-  console.log("rendering column", {props});
   return (
     <div className="tasklist three columns">
       <ColumnHeader name={props.name} column={props.column}/>
       <ul>
-
-        {matchColumn(props.column.columnValue, props.tasks).map((task, i) =>
+        {matchColumn(props.column.column_value, props.tasks).map((task, i) =>
           <Task task={task} key={i} selected={task.id == props.selectedTask}/>
         )}
 
