@@ -34,15 +34,9 @@ const updateTask = (db, task) => {
   })
 }
 
-const addTask = (db, task) => {
+const addTask = (task, db) => {
   return db('tasks')
-  .insert({
-      taskName: task.taskName,
-      description: task.description,
-      completionStatus: 0,
-      complexity: task.complexity,
-      userName: task.userName
-    })
+  .insert(task)
   }
 
 const getProjects = (db) => {

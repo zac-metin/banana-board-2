@@ -103,6 +103,7 @@ export const getProjectInfo = (project_id) => {
     request
       .get(`/api/projects/${project_id}`)
       .end((err, res) => {
+        res.body.project_id = project_id
         if (!err) dispatch(receiveProjectInfo(res.body))
       })
   }

@@ -1,10 +1,10 @@
 import request from 'superagent'
 
-export const editColumn = (id, newName) => {
+export const editColumn = (id, name) => {
   return {
     type: 'EDIT_COLUMN',
     id,
-    newName
+    name
   }
 }
 

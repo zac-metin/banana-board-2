@@ -10,10 +10,9 @@ const get = (req, res) => {
 
 const post = (req, res) => {
   let connection = req.app.get('connection')
-  console.log(req.body);
-  tasksDB.addTask(req.body,connection)
-    .then((project) => {
-      res.status(201).json(project[0])
+  tasksDB.addTask(req.body, connection)
+    .then((task_id) => {
+      res.status(201).json(task_id[0])
     })
 }
 

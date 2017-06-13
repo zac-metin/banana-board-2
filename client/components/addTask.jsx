@@ -8,6 +8,7 @@ class AddTask extends React.Component {
     this.state = {
       columns: props.columns,
       task: {
+        project_id: props.project_id,
       }
     }
   }
@@ -18,11 +19,14 @@ class AddTask extends React.Component {
     this.setState({task})
   }
   submitTask(e) {
+    e.preventDefault()
     console.log("submitting task", this.state.task);
     this.props.dispatch(addTask(this.state.task))
   }
   componentWillReceiveProps(nextProps) {
-    this.setState({columns:nextProps.projectInfo.columns})
+    let task = this.state.task
+    task.project_id = nextProps.project_id
+    this.setState({columns:nextProps.columns, task})
   }
   renderColumnOptions(columns) {
     return (
@@ -64,7 +68,8 @@ class AddTask extends React.Component {
 function mapStateToProps(state) {
   console.log("state", state.projectInfo);
   return {
-    columns: state.projectInfo.columns
+    columns: state.projectInfo.columns,
+    project_id: state.projectInfo.project_id
   }
 }
 
