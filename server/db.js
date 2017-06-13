@@ -77,13 +77,10 @@ const delProject = (project_id, db) => {
     .del()
 }
 
-const editColumn = (oldName, newName, db) => {
-  console.log(oldName, newName);
+const editColumn = ({id, column_name}, db) => {
   return db('projectColumns')
-  .where('column_name', oldName)
-  .update({
-    column_name: newName
-  })
+  .where('id', id)
+  .update({column_name})
 }
 
 module.exports = {
