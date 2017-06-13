@@ -18,7 +18,7 @@ class Tasks extends React.Component {
     const { columns } = this.props.projectInfo
     return (
       <div className='all-tasks'>
-        {columns.map((column) => <Column columnValue={column.column_value} name={column.column_name}/>)}
+        {columns.map((column) => <Column column={column} name={column.column_name}/>)}
       </div>
     )
   }

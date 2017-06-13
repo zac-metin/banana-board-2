@@ -5,6 +5,7 @@ const cors = require('cors')
 
 var tasks = require('./routes/tasks')
 var projects = require('./routes/projects')
+var projectcolumns = require('./routes/projectcolumns')
 
 
 const corsOptions = {
@@ -23,6 +24,7 @@ server.use(express.static(path.join(__dirname, '../public')))
 
 server.use('/api/tasks', tasks)
 server.use('/api/projects', projects)
+server.use('/api/projectcolumns', projectcolumns)
 
 module.exports = (db) => {
   server.set('connection', db)

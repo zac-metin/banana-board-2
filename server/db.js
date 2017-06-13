@@ -34,15 +34,9 @@ const updateTask = (db, task) => {
   })
 }
 
-const addTask = (db, task) => {
+const addTask = (task, db) => {
   return db('tasks')
-  .insert({
-      taskName: task.taskName,
-      description: task.description,
-      completionStatus: 0,
-      complexity: task.complexity,
-      userName: task.userName
-    })
+  .insert(task)
   }
 
 const getProjects = (db) => {
@@ -67,16 +61,20 @@ const editProject = (project, db) => {
   return db('projects')
     .where('id', project.id)
     .update({
-      name: project.name,
+      name: project.name
     })
 }
 
 const delProject = (project_id, db) => {
   return db('projects')
     .where('id', project.id)
-    .update({
-      name: project.name,
-    })
+    .del()
+}
+
+const editColumn = ({id, column_name}, db) => {
+  return db('projectColumns')
+  .where('id', id)
+  .update({column_name})
 }
 
 module.exports = {
@@ -88,5 +86,6 @@ module.exports = {
   editProject,
   getTasksByProjectId,
   getColumnsByProjectId,
-  addProjectColumns
+  addProjectColumns,
+  editColumn
 }
